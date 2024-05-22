@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MultiShop.Catalog.DTOs.ProductDetailDTOs;
 using MultiShop.Catalog.Services.ProductDetailServices;
 
 namespace MultiShop.Catalog.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductDetailController : Controller
@@ -36,19 +38,19 @@ namespace MultiShop.Catalog.Controllers
         public async Task<IActionResult> CreateProduct(CreateProductDetailDTO createProductDetailDTO)
         {
             await _productDetailService.CreateProductDetailAsync(createProductDetailDTO);
-            return Ok("Product detail was created successfully");
+            return Ok("A product detail has been created successfully");
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteProductDetail(string id)
         {
             await _productDetailService.DeleteProductDetailAsync(id);
-            return Ok("Product detail was deleted successfully");
+            return Ok("A product detail has been deleted successfully");
         }
         [HttpPut]
         public async Task<IActionResult> UpdateProductDetail(UpdateProductDetailDTO updateProductDetailDTO)
         {
             await _productDetailService.UpdateProductDetailAsync(updateProductDetailDTO);
-            return Ok("Product detail was updated successfully");
+            return Ok("A product detail has been updated successfully");
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MultiShop.Order.Application.Features.CQRS.Commands.AddressCommands
 {
-    public  class DeleteAddressCommand
+    public class DeleteAddressCommand
     {
         public int ID { get; set; }
 

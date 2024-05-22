@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MultiShop.Discount.DTOs;
 using MultiShop.Discount.Services;
 
 namespace MultiShop.Discount.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DiscountController : ControllerBase
@@ -31,19 +33,19 @@ namespace MultiShop.Discount.Controllers
         public async Task<IActionResult> CreateCoupon(CreateCouponDTO createCouponDTO)
         {
             await _discountService.CreateCouponAsync(createCouponDTO);
-            return Ok("Coupon was created successfully");
+            return Ok("A coupon has been created successfully");
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteCoupon(int id)
         {
             await _discountService.DeleteCouponAsync(id);
-            return Ok("Coupon was deleted successfully");
+            return Ok("A coupon has been deleted successfully");
         }
         [HttpPut]
         public async Task<IActionResult> UpdateCoupon(UpdateCouponDTO updateCouponDTO)
         {
             await _discountService.UpdateCouponAsync(updateCouponDTO);
-            return Ok("Coupon was updated successfully");
+            return Ok("A coupon has been updated successfully");
         }
     }
 }

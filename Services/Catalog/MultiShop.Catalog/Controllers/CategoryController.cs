@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MultiShop.Catalog.DTOs.CategoryDTOs;
 using MultiShop.Catalog.Services.CategoryServices;
 
 namespace MultiShop.Catalog.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
@@ -35,19 +37,19 @@ namespace MultiShop.Catalog.Controllers
         public async Task<IActionResult> CreateCategory(CreateCategoryDTO createCategoryDTO)
         {
             await _categoryService.CreateCategoryAsync(createCategoryDTO);
-            return Ok("Category was created successfully");
+            return Ok("A category has been created successfully");
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteCategory(string id)
         {
             await _categoryService.DeleteCategoryAsync(id);
-            return Ok("Category was deleted successfully");
+            return Ok("A category has been deleted successfully");
         }
         [HttpPut]
         public async Task<IActionResult> UpdateCategory(UpdateCategoryDTO updateCategoryDTO)
         {
             await _categoryService.UpdateCategoryAsync(updateCategoryDTO);
-            return Ok("Category was updated successfully");
+            return Ok("A category has been updated successfully");
         }
     }
 }

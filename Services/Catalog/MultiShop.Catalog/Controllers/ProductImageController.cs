@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MultiShop.Catalog.DTOs.ProductImageDTOs;
 using MultiShop.Catalog.Services.ProductImageServices;
 
 
 namespace MultiShop.Catalog.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductImageController : Controller
@@ -36,19 +38,19 @@ namespace MultiShop.Catalog.Controllers
         public async Task<IActionResult> CreateProduct(CreateProductImageDTO createProductImageDTO)
         {
             await _productImageService.CreateProductImageAsync(createProductImageDTO);
-            return Ok("Product image was created successfully");
+            return Ok("A product image has been created successfully");
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteProductImage(string id)
         {
             await _productImageService.DeleteProductImageAsync(id);
-            return Ok("Product image was deleted successfully");
+            return Ok("A product image has been deleted successfully");
         }
         [HttpPut]
         public async Task<IActionResult> UpdateProductImage(UpdateProductImageDTO updateProductImageDTO)
         {
             await _productImageService.UpdateProductImageAsync(updateProductImageDTO);
-            return Ok("Product image was updated successfully");
+            return Ok("A product image has been updated successfully");
         }
     }
 }
