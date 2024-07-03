@@ -6,4 +6,171 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+    <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\help-documentation\assets\.DS_Store" />
+    <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\help-documentation\assets\blueprint-css\plugins\.DS_Store" />
+    <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\app\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\charts\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\component\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\dist\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\forms\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\maps\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\pages\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\MainDownload-OvioAdmin-html5-template\html\tables\et-line-font\fonts\.DS_Store" />
+    <None Include="wwwroot\multishop-1.0.0\js\main.js" />
+    <None Include="wwwroot\multishop-1.0.0\lib\easing\easing.js" />
+    <None Include="wwwroot\multishop-1.0.0\lib\easing\easing.min.js" />
+    <None Include="wwwroot\multishop-1.0.0\lib\owlcarousel\LICENSE" />
+    <None Include="wwwroot\multishop-1.0.0\lib\owlcarousel\owl.carousel.js" />
+    <None Include="wwwroot\multishop-1.0.0\lib\owlcarousel\owl.carousel.min.js" />
+    <None Include="wwwroot\multishop-1.0.0\mail\contact.js" />
+    <None Include="wwwroot\multishop-1.0.0\mail\contact.php" />
+    <None Include="wwwroot\multishop-1.0.0\mail\jqBootstrapValidation.min.js" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\bootstrap-grid.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\bootstrap-reboot.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\bootstrap.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_alert.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_background-variant.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_badge.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_border-radius.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_box-shadow.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_breakpoints.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_buttons.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_caret.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_clearfix.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_deprecate.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_float.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_forms.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_gradients.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_grid-framework.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_grid.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_hover.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_image.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_list-group.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_lists.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_nav-divider.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_pagination.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_reset-text.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_resize.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_screen-reader.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_size.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_table-row.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_text-emphasis.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_text-hide.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_text-truncate.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_transition.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\mixins\_visibility.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_align.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_background.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_borders.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_clearfix.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_display.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_embed.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_flex.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_float.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_interactions.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_overflow.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_position.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_screenreaders.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_shadows.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_sizing.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_spacing.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_stretched-link.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_text.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\utilities\_visibility.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\vendor\_rfs.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_alert.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_badge.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_breadcrumb.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_button-group.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_buttons.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_card.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_carousel.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_close.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_code.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_custom-forms.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_dropdown.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_forms.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_functions.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_grid.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_images.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_input-group.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_jumbotron.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_list-group.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_media.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_mixins.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_modal.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_nav.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_navbar.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_pagination.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_popover.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_print.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_progress.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_reboot.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_root.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_spinners.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_tables.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_toasts.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_tooltip.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_transitions.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_type.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_utilities.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\bootstrap\scss\_variables.scss" />
+    <None Include="wwwroot\multishop-1.0.0\scss\style.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MultiShop.DTOLayer\MultiShop.DTOLayer.csproj" />
+  </ItemGroup>
+
 </Project>

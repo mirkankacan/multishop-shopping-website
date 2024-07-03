@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="#">Home</a>
+                <a class="breadcrumb-item text-dark" href="#">Shop</a>
+                <span class="breadcrumb-item active">Shop List</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Shop Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <!-- Shop Sidebar Start -->
+        <div class="col-lg-3 col-md-4">
+            <!-- Price Start -->
+            @await Component.InvokeAsync("_PriceFilterProductListComponentPartial")
+            <!-- Price End -->
+            <!-- Color Start -->
+            @await Component.InvokeAsync("_ColorFilterProductListComponentPartial")
+            <!-- Color End -->
+            <!-- Size Start -->
+            @await Component.InvokeAsync("_SizeFilterProductListComponentPartial")
+            <!-- Size End -->
+        </div>
+        <!-- Shop Sidebar End -->
+        <!-- Shop Product Start -->
+        <div class="col-lg-9 col-md-8">
+            <div class="row pb-3">
+                @await Component.InvokeAsync("_SortFilterProductListComponentPartial")
+
+                @await Component.InvokeAsync("_ProductsProductListComponentPartial")
+           
+                @await Component.InvokeAsync("_PaginationProductListComponentPartial")
+            </div>
+        </div>
+        <!-- Shop Product End -->
+    </div>
+</div>
+<!-- Shop End -->

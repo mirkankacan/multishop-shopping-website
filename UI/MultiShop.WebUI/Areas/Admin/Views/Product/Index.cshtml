@@ -1,0 +1,47 @@
+﻿@model List<MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductDTOs.ResultProductDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>@ViewBag.v3</h4>
+                <br />
+                <div class="bs-example" data-example-id="simple-table">
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Product Name</th>
+                                <th>Product Price</th>
+                                <th>Delete</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@item.ProductName</td>
+                                    <td>@item.ProductPrice</td>
+                                    <td><a href="/Admin/Product/DeleteProduct/@item.ProductID" class="btn btn-danger btn-block">Delete</a></td>
+                                    <td><a href="/Admin/Product/UpdateProduct/@item.ProductID" class="btn btn-warning btn-block">Update</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/Admin/Product/CreateProduct" class="btn btn-success">Create a New Product</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
