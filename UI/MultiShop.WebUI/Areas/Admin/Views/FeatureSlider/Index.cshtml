@@ -1,4 +1,4 @@
-﻿@model List<MultiShop.DTOLayer.DTOs.CatalogDTOs.CategoryDTOs.ResultCategoryDTO>
+﻿@model List<MultiShop.DTOLayer.DTOs.CatalogDTOs.FeatureSliderDTOs.ResultFeatureSliderDTO>
 
 @{
     ViewData["Title"] = "Index";
@@ -11,33 +11,32 @@
         <div class="col-md-12">
             <div class="chart-box">
                 <h4>@ViewBag.v3</h4>
-              <br />
+                <br />
                 <div class="bs-example" data-example-id="simple-table">
-                    <table class="table">                     
+                    <table class="table">
+
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Category Name</th>
-                                <th>Products in Category</th>
+                                <th>Image Title</th>
                                 <th>Delete</th>
                                 <th>Update</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(var item in Model)
+                            @foreach (var item in Model)
                             {
                                 count++;
                                 <tr>
                                     <th scope="row">@count</th>
-                                    <td>@item.CategoryName</td>
-                                    <td><a href="#" class="btn btn-info btn-block">Products in Category</a></td>
-                                    <td><a href="/Admin/Category/DeleteCategory/@item.CategoryID" class="btn btn-danger btn-block">Delete</a></td>
-                                    <td><a href="/Admin/Category/UpdateCategory/@item.CategoryID" class="btn btn-warning btn-block">Update</a></td>
+                                    <td>@item.Title</td>
+                                    <td><a href="/Admin/FeatureSlider/DeleteFeatureSlider/@item.FeatureSliderID" class="btn btn-danger btn-block">Delete</a></td>
+                                    <td><a href="/Admin/FeatureSlider/UpdateFeatureSlider/@item.FeatureSliderID" class="btn btn-warning btn-block">Update</a></td>
                                 </tr>
                             }
                         </tbody>
                     </table>
-                    <a href="/Admin/Category/CreateCategory" class="btn btn-success">Create a New Category</a>
+                    <a href="/Admin/FeatureSlider/CreateFeatureSlider" class="btn btn-success">Create a New Feature Slider</a>
                 </div>
             </div>
         </div>

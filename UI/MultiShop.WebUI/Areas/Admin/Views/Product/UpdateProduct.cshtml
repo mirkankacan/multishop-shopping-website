@@ -1,8 +1,40 @@
-﻿
+﻿@model MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductDTOs.UpdateProductDTO
+
 @{
     ViewData["Title"] = "UpdateProduct";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
 
-<h1>UpdateProduct</h1>
 
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>@ViewBag.v3</h4>
+                <br />
+                <div class="bs-example" data-example-id="simple-table">
+                    <form method="post">
+                        <input type="hidden" asp-for="ProductID"/>
+                        <label>Product Name</label>
+                        <input type="text" class="form-control" asp-for="ProductName" />
+                        <br />
+                        <label>Product Price</label>
+                        <input type="text" class="form-control" asp-for="ProductPrice" />
+                        <br />
+                        <label>Product Image</label>
+                        <input type="text" class="form-control" asp-for="ProductImageURL"/>
+                        <br />
+                        <label>Product's Category</label>
+                        @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.CategoryValues, new { @class = "form-control" })
+                        <br />
+                        <label>Product Description</label>
+                        <textarea class="form-control" asp-for="ProductDescription" rows="5" style="resize:vertical"></textarea>
+                        <br />
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

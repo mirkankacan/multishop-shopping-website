@@ -1,0 +1,33 @@
+﻿@model MultiShop.DTOLayer.DTOs.CatalogDTOs.FeatureSliderDTOs.CreateFeatureSliderDTO
+
+@{
+    ViewData["Title"] = "CreateFeatureSlider";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>@ViewBag.v3</h4>
+                <br />
+                <div class="bs-example" data-example-id="simple-table">
+                    <form method="post">
+                        <label>Image Title</label>
+                        <input type="text" class="form-control" asp-for="Title" value="" />
+                        <br />
+                        <label>Image Description</label>
+                        <input type="text" class="form-control" asp-for="Description" value="" />
+                        <br />
+                        <label>Image Url</label>
+                        <input type="text" class="form-control" asp-for="ImageUrl" value="" />
+                        <br />
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
