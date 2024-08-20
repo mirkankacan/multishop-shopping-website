@@ -1,9 +1,11 @@
-﻿@model MultiShop.DTOLayer.DTOs.CatalogDTOs.CategoryDTOs.CreateCategoryDTO
+﻿@model MultiShop.DTOLayer.DTOs.CatalogDTOs.SpecialOfferDTOs.CreateSpecialOfferDTO
 
 @{
-    ViewData["Title"] = "CreateCategory";
+    ViewData["Title"] = "CreateSpecialOffer";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
+
+
 
 <section class="content container-fluid">
     <div class="row">
@@ -13,11 +15,14 @@
                 <br />
                 <div class="bs-example" data-example-id="simple-table">
                     <form method="post">
-                        <label>Category Name</label>
-                        <input type="text" class="form-control" asp-for="CategoryName" value="" />
+                        <label>Offer Title</label>
+                        <input type="text" class="form-control" asp-for="Title" value="" />
                         <br />
-                        <label>Category Image</label>
-                        <input type="text" class="form-control" asp-for="CategoryImage" value="" />
+                        <label>Offer Subtitle</label>
+                        <input type="text" class="form-control" asp-for="Subtitle" value="" />
+                        <br
+                        <label>Offer Image Url</label>
+                        <input type="text" class="form-control" asp-for="ImageUrl" value="" />
                         <br />
                         <button type="submit" class="btn btn-primary">Create</button>
                     </form>

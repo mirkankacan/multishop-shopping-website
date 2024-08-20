@@ -1,7 +1,7 @@
-﻿@model MultiShop.DTOLayer.DTOs.CatalogDTOs.CategoryDTOs.CreateCategoryDTO
+﻿@model MultiShop.DTOLayer.DTOs.CatalogDTOs.FeatureDTOs.CreateFeatureDTO
 
 @{
-    ViewData["Title"] = "CreateCategory";
+    ViewData["Title"] = "CreateFeature";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
 
@@ -13,11 +13,11 @@
                 <br />
                 <div class="bs-example" data-example-id="simple-table">
                     <form method="post">
-                        <label>Category Name</label>
-                        <input type="text" class="form-control" asp-for="CategoryName" value="" />
+                        <label>Feature Title</label>
+                        <input type="text" class="form-control" asp-for="Title" value="" />
                         <br />
-                        <label>Category Image</label>
-                        <input type="text" class="form-control" asp-for="CategoryImage" value="" />
+                        <label>Icon</label>
+                        <input type="text" class="form-control" asp-for="Icon" value="" />
                         <br />
                         <button type="submit" class="btn btn-primary">Create</button>
                     </form>

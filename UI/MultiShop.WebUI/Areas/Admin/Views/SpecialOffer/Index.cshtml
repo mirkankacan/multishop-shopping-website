@@ -1,9 +1,10 @@
-﻿@model List<MultiShop.DTOLayer.DTOs.CatalogDTOs.CategoryDTOs.ResultCategoryDTO>
+﻿@model List<MultiShop.DTOLayer.DTOs.CatalogDTOs.SpecialOfferDTOs.ResultSpecialOfferDTO>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
     int count = 0;
+
 }
 
 <section class="content container-fluid">
@@ -11,31 +12,33 @@
         <div class="col-md-12">
             <div class="chart-box">
                 <h4>@ViewBag.v3</h4>
-              <br />
+                <br />
                 <div class="bs-example" data-example-id="simple-table">
-                    <table class="table">                     
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Category Name</th>
+                                <th>Offer Title</th>
+                                <th>Offer Subtitle</th>
                                 <th>Delete</th>
                                 <th>Update</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(var item in Model)
+                            @foreach (var item in Model)
                             {
                                 count++;
                                 <tr>
                                     <th scope="row">@count</th>
-                                    <td>@item.CategoryName</td>
-                                    <td><a href="/Admin/Category/DeleteCategory/@item.CategoryID" class="btn btn-danger btn-block">Delete</a></td>
-                                    <td><a href="/Admin/Category/UpdateCategory/@item.CategoryID" class="btn btn-warning btn-block">Update</a></td>
+                                    <td>@item.Title</td>
+                                    <td>@item.Subtitle</td>
+                                    <td><a href="/Admin/SpecialOffer/DeleteSpecialOffer/@item.SpecialOfferID" class="btn btn-danger btn-block">Delete</a></td>
+                                    <td><a href="/Admin/SpecialOffer/UpdateSpecialOffer/@item.SpecialOfferID" class="btn btn-warning btn-block">Update</a></td>
                                 </tr>
                             }
                         </tbody>
                     </table>
-                    <a href="/Admin/Category/CreateCategory" class="btn btn-success">Create a New Category</a>
+                    <a href="/Admin/SpecialOffer/CreateSpecialOffer" class="btn btn-success">Create a New Special Offer</a>
                 </div>
             </div>
         </div>
