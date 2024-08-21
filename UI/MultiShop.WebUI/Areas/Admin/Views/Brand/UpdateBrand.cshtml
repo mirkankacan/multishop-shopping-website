@@ -1,9 +1,12 @@
-﻿@model MultiShop.DTOLayer.DTOs.CatalogDTOs.CategoryDTOs.UpdateCategoryDTO
+﻿@model MultiShop.DTOLayer.DTOs.CatalogDTOs.BrandDTOs.UpdateBrandDTO
+
 
 @{
-    ViewData["Title"] = "UpdateCategory";
+    ViewData["Title"] = "UpdateBrand";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
+
+
 
 <section class="content container-fluid">
     <div class="row">
@@ -13,13 +16,13 @@
                 <br />
                 <div class="bs-example" data-example-id="simple-table">
                     <form method="post">
-                        <label class="hidden">Category ID</label>
-                        <input type="hidden" class="form-control" asp-for="CategoryID" />
-                        <label>Category Name</label>
-                        <input type="text" class="form-control" asp-for="CategoryName"/>
+                        <label class="hidden">Brand ID</label>
+                        <input type="hidden" class="form-control" asp-for="BrandID" />
+                        <label>Brand Name</label>
+                        <input type="text" class="form-control" asp-for="BrandName" />
                         <br />
-                        <label>Category Image</label>
-                        <input type="text" class="form-control" asp-for="CategoryImage" />
+                        <label>Brand Image</label>
+                        <input type="text" class="form-control" asp-for="BrandImageUrl" />
                         <br />
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>

@@ -1,7 +1,14 @@
-﻿<div class="container-fluid py-5">
+﻿@model List<MultiShop.DTOLayer.DTOs.CatalogDTOs.BrandDTOs.ResultBrandDTO>
+<div class="container-fluid py-5">
     <div class="row px-xl-5">
         <div class="col">
             <div class="owl-carousel vendor-carousel">
+                @foreach(var item in Model)
+                {
+                    <div class="bg-light p-4">
+                        <img src="@item.BrandImageUrl" alt="@item.BrandName image">
+                    </div>
+                }
                 <div class="bg-light p-4">
                     <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo-700x394.png" alt="">
                 </div>

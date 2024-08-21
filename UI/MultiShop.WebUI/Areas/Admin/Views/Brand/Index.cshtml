@@ -1,0 +1,49 @@
+﻿@model List<MultiShop.DTOLayer.DTOs.CatalogDTOs.BrandDTOs.ResultBrandDTO>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>@ViewBag.v3</h4>
+                <br />
+                <div class="bs-example" data-example-id="simple-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Brand Name</th>
+                                <th>Image</th>
+                                <th>Delete</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@item.BrandName</td>
+                                    <td><img src="@item.BrandImageUrl" class="img-fluid" width="100"/></td>
+                                    <td><a href="/Admin/Brand/DeleteBrand/@item.BrandID" class="btn btn-danger btn-block">Delete</a></td>
+                                    <td><a href="/Admin/Brand/UpdateBrand/@item.BrandID" class="btn btn-warning btn-block">Update</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/Admin/Brand/CreateBrand" class="btn btn-success">Create a New Brand</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+

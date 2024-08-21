@@ -1,0 +1,50 @@
+﻿@model List<MultiShop.DTOLayer.DTOs.CatalogDTOs.OfferDiscountDTOs.ResultOfferDiscountDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>@ViewBag.v3</h4>
+                <br />
+                <div class="bs-example" data-example-id="simple-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Offer Discount Title</th>
+                                <th>Offer Discount Subtitle</th>
+                                <th>Delete</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@item.Title</td>
+                                    <td>@item.Subtitle</td>
+                                    <td><a href="/Admin/OfferDiscount/DeleteOfferDiscount/@item.OfferDiscountID" class="btn btn-danger btn-block">Delete</a></td>
+                                    <td><a href="/Admin/OfferDiscount/UpdateOfferDiscount/@item.OfferDiscountID" class="btn btn-warning btn-block">Update</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/Admin/OfferDiscount/CreateOfferDiscount" class="btn btn-success">Create a New Offer Discount</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+

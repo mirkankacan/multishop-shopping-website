@@ -4,7 +4,7 @@ namespace MultiShop.Catalog.Services.SpecialOfferServices
 {
     public interface ISpecialOfferService
     {
-        Task<List<ResultSpecialOfferDTO>> GetAllCategoriesAsync();
+        Task<List<ResultSpecialOfferDTO>> GetAllSpecialOffersAsync();
         Task CreateSpecialOfferAsync(CreateSpecialOfferDTO createSpecialOfferDTO);
         Task UpdateSpecialOfferAsync(UpdateSpecialOfferDTO updateSpecialOfferDTO);
         Task DeleteSpecialOfferAsync(string id);

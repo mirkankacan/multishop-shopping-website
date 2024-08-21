@@ -1,24 +1,20 @@
-﻿<div class="container-fluid pt-5 pb-3">
+﻿@model List<MultiShop.DTOLayer.DTOs.CatalogDTOs.OfferDiscountDTOs.ResultOfferDiscountDTO>
+<div class="container-fluid pt-5 pb-3">
     <div class="row px-xl-5">
-        <div class="col-md-6">
-            <div class="product-offer mb-30" style="height: 300px;">
-                <img class="img-fluid" src="https://www.bobswatches.com/rolex-blog/wp-content/uploads/2019/01/Rolex_Submariner_16610V_5D3_5211-2-Edit-2-1.jpg" alt="">
-                <div class="offer-text">
-                    <h6 class="text-white text-uppercase">Save 20%</h6>
-                    <h3 class="text-white mb-3">Watches</h3>
-                    <a href="" class="btn btn-primary">Shop Now</a>
+        @foreach(var item in Model)
+        {
+            <div class="col-md-6">
+                <div class="product-offer mb-30" style="height: 300px;">
+                    <img class="img-fluid" src="@item.ImageUrl" alt="@item.Title image">
+                    <div class="offer-text">
+                        <h6 class="text-white text-uppercase">@item.Subtitle</h6>
+                        <h3 class="text-white mb-3">@item.Title</h3>
+                        <a href="" class="btn btn-primary">@item.ButtonTitle</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="product-offer mb-30" style="height: 300px;">
-                <img class="img-fluid" src="https://www.gumuspazarim.com/pembe-tasli-6-yaprakli-yonca-gumus-kolye-3601-15-B.jpg" alt="">
-                <div class="offer-text">
-                    <h6 class="text-white text-uppercase">Save 20%</h6>
-                    <h3 class="text-white mb-3">Necklaces</h3>
-                    <a href="" class="btn btn-primary">Shop Now</a>
-                </div>
-            </div>
-        </div>
+        }
+       
+    
     </div>
 </div>

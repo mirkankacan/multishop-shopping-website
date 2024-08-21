@@ -1,0 +1,33 @@
+﻿@model MultiShop.DTOLayer.DTOs.CatalogDTOs.BrandDTOs.CreateBrandDTO
+
+
+@{
+    ViewData["Title"] = "CreateBrand";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>@ViewBag.v3</h4>
+                <br />
+                <div class="bs-example" data-example-id="simple-table">
+                    <form method="post">
+                        <label>Brand Name</label>
+                        <input type="text" class="form-control" asp-for="BrandName" value="" />
+                        <br />
+                        <label>Brand Image</label>
+                        <input type="text" class="form-control" asp-for="BrandImageUrl" value="" />
+                        <br />
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+

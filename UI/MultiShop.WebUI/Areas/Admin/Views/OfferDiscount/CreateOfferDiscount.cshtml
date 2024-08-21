@@ -1,0 +1,37 @@
+﻿@model MultiShop.DTOLayer.DTOs.CatalogDTOs.OfferDiscountDTOs.CreateOfferDiscountDTO
+@{
+    ViewData["Title"] = "CreateOfferDiscount";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>@ViewBag.v3</h4>
+                <br />
+                <div class="bs-example" data-example-id="simple-table">
+                    <form method="post">
+                        <label>Offer Discount Title</label>
+                        <input type="text" class="form-control" asp-for="Title" value="" />
+                        <br />
+                        <label>Offer Discount Subtitle</label>
+                        <input type="text" class="form-control" asp-for="Subtitle" value="" />
+                        <br
+                        <label>Offer Discount Image Url</label>
+                        <input type="text" class="form-control" asp-for="ImageUrl" value="" />
+                        <br />
+                        <label>Offer Discount Button Title</label>
+                        <input type="text" class="form-control" asp-for="ButtonTitle" value="" />
+                        <br />
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+

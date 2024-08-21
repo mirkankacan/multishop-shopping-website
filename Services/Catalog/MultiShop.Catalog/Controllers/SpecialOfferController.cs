@@ -18,10 +18,8 @@ namespace MultiShop.Catalog.Controllers
         [HttpGet]
         public async Task<IActionResult> SpecialOfferList()
         {
-            var SpecialOfferList = await _specialOfferService.GetAllCategoriesAsync();
-
+            var SpecialOfferList = await _specialOfferService.GetAllSpecialOffersAsync();
             return Ok(SpecialOfferList);
-
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSpecialOfferById(string id)
