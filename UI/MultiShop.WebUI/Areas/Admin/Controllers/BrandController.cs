@@ -23,10 +23,10 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v0 = "Brand Operations";
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetFromJsonAsync<List<ResultBrandDTO>>("https://localhost:7135/api/Brand");
-            if (responseMessage != null)
+            var response = await client.GetFromJsonAsync<List<ResultBrandDTO>>("https://localhost:7135/api/Brand");
+            if (response != null)
             {
-                return View(responseMessage);
+                return View(response);
             }
 
             return View();
@@ -44,8 +44,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateBrand(CreateBrandDTO createBrandDTO)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.PostAsJsonAsync("https://localhost:7135/api/Brand", createBrandDTO);
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await client.PostAsJsonAsync("https://localhost:7135/api/Brand", createBrandDTO);
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Brand", new { Area = "Admin" });
             }
@@ -55,8 +55,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteBrand(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7135/api/Brand?id={id}");
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await client.DeleteAsync($"https://localhost:7135/api/Brand?id={id}");
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Brand", new { Area = "Admin" });
             }
@@ -72,10 +72,10 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v0 = "Brand Operations";
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetFromJsonAsync<UpdateBrandDTO>($"https://localhost:7135/api/Brand/{id}");
-            if (responseMessage != null)
+            var response = await client.GetFromJsonAsync<UpdateBrandDTO>($"https://localhost:7135/api/Brand/{id}");
+            if (response != null)
             {
-                return View(responseMessage);
+                return View(response);
             }
             return View();
         }
@@ -83,8 +83,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateBrand(UpdateBrandDTO updateBrandDTO)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.PutAsJsonAsync("https://localhost:7135/api/Brand", updateBrandDTO);
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await client.PutAsJsonAsync("https://localhost:7135/api/Brand", updateBrandDTO);
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Brand", new { area = "Admin" });
             }

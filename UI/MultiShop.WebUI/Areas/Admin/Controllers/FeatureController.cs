@@ -23,10 +23,10 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v0 = "Feature Operations";
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetFromJsonAsync<List<ResultFeatureDTO>>("https://localhost:7135/api/Feature");
-            if (responseMessage != null)
+            var response = await client.GetFromJsonAsync<List<ResultFeatureDTO>>("https://localhost:7135/api/Feature");
+            if (response != null)
             {
-                return View(responseMessage);
+                return View(response);
             }
 
             return View();
@@ -44,8 +44,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateFeature(CreateFeatureDTO createFeatureDTO)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.PostAsJsonAsync("https://localhost:7135/api/Feature", createFeatureDTO);
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await client.PostAsJsonAsync("https://localhost:7135/api/Feature", createFeatureDTO);
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Feature", new { Area = "Admin" });
             }
@@ -55,8 +55,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteFeature(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7135/api/Feature?id={id}");
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await client.DeleteAsync($"https://localhost:7135/api/Feature?id={id}");
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Feature", new { Area = "Admin" });
             }
@@ -72,10 +72,10 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v0 = "Feature Operations";
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetFromJsonAsync<UpdateFeatureDTO>($"https://localhost:7135/api/Feature/{id}");
-            if (responseMessage != null)
+            var response = await client.GetFromJsonAsync<UpdateFeatureDTO>($"https://localhost:7135/api/Feature/{id}");
+            if (response != null)
             {
-                return View(responseMessage);
+                return View(response);
             }
             return View();
         }
@@ -83,8 +83,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateFeature(UpdateFeatureDTO updateFeatureDTO)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.PutAsJsonAsync("https://localhost:7135/api/Feature", updateFeatureDTO);
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await client.PutAsJsonAsync("https://localhost:7135/api/Feature", updateFeatureDTO);
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Feature", new { area = "Admin" });
             }

@@ -1,0 +1,41 @@
+﻿@model MultiShop.DTOLayer.DTOs.CatalogDTOs.AboutDTOs.CreateAboutDTO
+
+
+@{
+    ViewData["Title"] = "CreateAbout";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>@ViewBag.v3</h4>
+                <br />
+                <div class="bs-example" data-example-id="simple-table">
+                    <form method="post">
+                        <label>About Address</label>
+                        <input type="text" class="form-control" asp-for="Address" value="" />
+                        <br />
+                        <label>About Description</label>
+                        <input type="text" class="form-control" asp-for="Description" value="" />
+                        <br />
+                        <label>About Email</label>
+                        <input type="text" class="form-control" asp-for="Email" value="" />
+                        <br />
+                        <label>About Phone</label>
+                        <input type="text" class="form-control" asp-for="Phone" value="" />
+                        <br />
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+

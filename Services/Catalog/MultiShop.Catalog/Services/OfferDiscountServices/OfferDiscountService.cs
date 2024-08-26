@@ -30,8 +30,8 @@ namespace MultiShop.Catalog.Services.OfferDiscountServices
 
         public async Task<List<ResultOfferDiscountDTO>> GetAllOfferDiscountsAsync()
         {
-            var offerDiscount = await _offerDiscountCollection.Find(x => true).ToListAsync();
-            return _mapper.Map<List<ResultOfferDiscountDTO>>(offerDiscount);
+            var offerDiscounts = await _offerDiscountCollection.Find(x => true).ToListAsync();
+            return _mapper.Map<List<ResultOfferDiscountDTO>>(offerDiscounts);
         }
 
         public async Task<GetByIdOfferDiscountDTO> GetByIdOfferDiscountAsync(string id)

@@ -15,10 +15,10 @@ namespace MultiShop.WebUI.ViewComponents.HomeViewComponents
         {
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetFromJsonAsync<List<ResultSpecialOfferDTO>>("https://localhost:7135/api/SpecialOffer");
-            if (responseMessage != null)
+            var response = await client.GetFromJsonAsync<List<ResultSpecialOfferDTO>>("https://localhost:7135/api/SpecialOffer");
+            if (response != null)
             {
-                return View(responseMessage);
+                return View(response);
             }
 
             return View();

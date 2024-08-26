@@ -26,10 +26,10 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v0 = "Product Operations";
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetFromJsonAsync<List<ResultProductDTO>>("https://localhost:7135/api/product");
-            if (responseMessage != null)
+            var response = await client.GetFromJsonAsync<List<ResultProductDTO>>("https://localhost:7135/api/product");
+            if (response != null)
             {
-                return View(responseMessage);
+                return View(response);
             }
 
             return View();
@@ -43,10 +43,10 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v0 = "Product Operations";
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetFromJsonAsync<List<ResultProductWithCategoryDTO>>("https://localhost:7135/api/product/productlistwithcategory");
-            if (responseMessage != null)
+            var response = await client.GetFromJsonAsync<List<ResultProductWithCategoryDTO>>("https://localhost:7135/api/product/productlistwithcategory");
+            if (response != null)
             {
-                return View(responseMessage);
+                return View(response);
             }
 
             return View();
@@ -74,8 +74,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         {
             var client = _httpClientFactory.CreateClient();
 
-            var responseMessage = await client.PostAsJsonAsync("https://localhost:7135/api/product", createProductDTO);
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await client.PostAsJsonAsync("https://localhost:7135/api/product", createProductDTO);
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Product", new { Area = "Admin" });
             }
@@ -86,8 +86,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteProduct(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7135/api/product?id={id}");
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await client.DeleteAsync($"https://localhost:7135/api/product?id={id}");
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Product", new { Area = "Admin" });
             }
@@ -111,10 +111,10 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
                                                         Value = c.CategoryID
                                                     }).ToList();
             ViewBag.CategoryValues = catergoryValues;
-            var responseMessage = await client.GetFromJsonAsync<UpdateProductDTO>($"https://localhost:7135/api/product/{id}");
-            if (responseMessage != null)
+            var response = await client.GetFromJsonAsync<UpdateProductDTO>($"https://localhost:7135/api/product/{id}");
+            if (response != null)
             {
-                return View(responseMessage);
+                return View(response);
             }
             return View();
         }
@@ -122,8 +122,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateProduct(UpdateProductDTO updateProductDTO)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.PutAsJsonAsync("https://localhost:7135/api/product", updateProductDTO);
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await client.PutAsJsonAsync("https://localhost:7135/api/product", updateProductDTO);
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Product", new { area = "Admin" });
             }

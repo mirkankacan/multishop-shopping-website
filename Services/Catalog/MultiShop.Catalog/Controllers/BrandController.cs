@@ -18,17 +18,17 @@ namespace MultiShop.Catalog.Controllers
         [HttpGet]
         public async Task<IActionResult> BrandList()
         {
-            var BrandList = await _brandService.GetAllBrandsAsync();
+            var brandList = await _brandService.GetAllBrandsAsync();
 
-            return Ok(BrandList);
+            return Ok(brandList);
 
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBrandById(string id)
         {
-            var Brand = await _brandService.GetByIdBrandAsync(id);
+            var brand = await _brandService.GetByIdBrandAsync(id);
 
-            return Ok(Brand);
+            return Ok(brand);
 
         }
         [HttpPost]

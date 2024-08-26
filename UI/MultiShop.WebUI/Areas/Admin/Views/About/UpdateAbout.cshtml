@@ -1,0 +1,41 @@
+﻿@model MultiShop.DTOLayer.DTOs.CatalogDTOs.AboutDTOs.UpdateAboutDTO
+
+
+
+@{
+    ViewData["Title"] = "UpdateAbout";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>@ViewBag.v3</h4>
+                <br />
+                <div class="bs-example" data-example-id="simple-table">
+                    <form method="post">
+                        <input type="hidden" class="form-control" asp-for="AboutID" />
+                        <label>About Address</label>
+                        <input type="text" class="form-control" asp-for="Address" />
+                        <br />
+                        <label>About Description</label>
+                        <input type="text" class="form-control" asp-for="Description" />
+                        <br />
+                        <label>About Email</label>
+                        <input type="text" class="form-control" asp-for="Email" />
+                        <br />
+                        <label>About Phone</label>
+                        <input type="text" class="form-control" asp-for="Phone" />
+                        <br />
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+

@@ -32,8 +32,8 @@ namespace MultiShop.Catalog.Services.BrandServices
 
         public async Task<List<ResultBrandDTO>> GetAllBrandsAsync()
         {
-            var categories = await _brandCollection.Find(x => true).ToListAsync();
-            return _mapper.Map<List<ResultBrandDTO>>(categories);
+            var brands = await _brandCollection.Find(x => true).ToListAsync();
+            return _mapper.Map<List<ResultBrandDTO>>(brands);
         }
 
         public async Task<GetByIdBrandDTO> GetByIdBrandAsync(string id)

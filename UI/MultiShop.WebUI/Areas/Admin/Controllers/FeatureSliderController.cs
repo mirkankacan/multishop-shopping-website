@@ -24,10 +24,10 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v0 = "Feature Slider Operations";
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetFromJsonAsync<List<ResultFeatureSliderDTO>>("https://localhost:7135/api/FeatureSlider");
-            if (responseMessage != null)
+            var response = await client.GetFromJsonAsync<List<ResultFeatureSliderDTO>>("https://localhost:7135/api/FeatureSlider");
+            if (response != null)
             {
-                return View(responseMessage);
+                return View(response);
             }
 
             return View();
@@ -46,8 +46,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         {
             createFeatureSliderDTO.Status = false;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.PostAsJsonAsync("https://localhost:7135/api/FeatureSlider", createFeatureSliderDTO);
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await client.PostAsJsonAsync("https://localhost:7135/api/FeatureSlider", createFeatureSliderDTO);
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "FeatureSlider", new { Area = "Admin" });
             }
@@ -57,8 +57,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteFeatureSlider(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7135/api/FeatureSlider?id={id}");
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await client.DeleteAsync($"https://localhost:7135/api/FeatureSlider?id={id}");
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "FeatureSlider", new { Area = "Admin" });
             }
@@ -74,10 +74,10 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v0 = "Feature Slider Operations";
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetFromJsonAsync<UpdateFeatureSliderDTO>($"https://localhost:7135/api/FeatureSlider/{id}");
-            if (responseMessage != null)
+            var response = await client.GetFromJsonAsync<UpdateFeatureSliderDTO>($"https://localhost:7135/api/FeatureSlider/{id}");
+            if (response != null)
             {
-                return View(responseMessage);
+                return View(response);
             }
             return View();
         }
@@ -85,8 +85,8 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateFeatureSlider(UpdateFeatureSliderDTO updateFeatureSliderDTO)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.PutAsJsonAsync("https://localhost:7135/api/FeatureSlider", updateFeatureSliderDTO);
-            if (responseMessage.IsSuccessStatusCode)
+            var response = await client.PutAsJsonAsync("https://localhost:7135/api/FeatureSlider", updateFeatureSliderDTO);
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "FeatureSlider", new { area = "Admin" });
             }

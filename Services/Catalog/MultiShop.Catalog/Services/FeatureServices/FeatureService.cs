@@ -32,8 +32,8 @@ namespace MultiShop.Catalog.Services.FeatureServices
 
         public async Task<List<ResultFeatureDTO>> GetAllFeaturesAsync()
         {
-            var categories = await _featureCollection.Find(x => true).ToListAsync();
-            return _mapper.Map<List<ResultFeatureDTO>>(categories);
+            var features = await _featureCollection.Find(x => true).ToListAsync();
+            return _mapper.Map<List<ResultFeatureDTO>>(features);
         }
 
         public async Task<GetByIdFeatureDTO> GetByIdFeatureAsync(string id)
