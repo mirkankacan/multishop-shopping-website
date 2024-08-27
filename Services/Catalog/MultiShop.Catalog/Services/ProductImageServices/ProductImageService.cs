@@ -27,7 +27,7 @@ namespace MultiShop.Catalog.Services.ProductImageServices
 
         public async Task DeleteProductImageAsync(string id)
         {
-            await _productImageCollection.DeleteOneAsync(x => x.ProductImageID== id);
+            await _productImageCollection.DeleteOneAsync(x => x.ProductImageID == id);
         }
 
         public async Task<List<ResultProductImageDTO>> GetAllProductImagesAsync()
@@ -40,6 +40,20 @@ namespace MultiShop.Catalog.Services.ProductImageServices
         {
             var productImage = await _productImageCollection.Find(x => x.ProductImageID == id).FirstOrDefaultAsync();
             return _mapper.Map<GetByIdProductImageDTO>(productImage);
+        }
+
+        public async Task<GetByIdProductImageDTO> GetProductImagesByProductId(string id)
+        {
+            try
+            {
+                var productImages = await _productImageCollection.Find(x => x.ProductID == id).FirstOrDefaultAsync();
+
+                return _mapper.Map<GetByIdProductImageDTO>(productImages);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public async Task UpdateProductImageAsync(UpdateProductImageDTO updateProductImageDTO)

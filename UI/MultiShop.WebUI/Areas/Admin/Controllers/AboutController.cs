@@ -10,10 +10,12 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
     public class AboutController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+
         public AboutController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
+
         [Route("Index")]
         public async Task<IActionResult> Index()
         {
@@ -31,6 +33,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 
             return View();
         }
+
         [Route("CreateAbout"), HttpGet]
         public IActionResult CreateAbout()
         {
@@ -40,6 +43,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v0 = "About Operations";
             return View();
         }
+
         [Route("CreateAbout"), HttpPost]
         public async Task<IActionResult> CreateAbout(CreateAboutDTO createAboutDTO)
         {
@@ -51,6 +55,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+
         [Route("DeleteAbout/{id}")]
         public async Task<IActionResult> DeleteAbout(string id)
         {
@@ -79,6 +84,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+
         [Route("UpdateAbout/{id}"), HttpPost]
         public async Task<IActionResult> UpdateAbout(UpdateAboutDTO updateAboutDTO)
         {

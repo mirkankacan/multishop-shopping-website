@@ -6,7 +6,7 @@ using MultiShop.Catalog.Settings;
 
 namespace MultiShop.Catalog.Services.ProductDetailServices
 {
-    public class ProductDetailService: IProductDetailService
+    public class ProductDetailService : IProductDetailService
     {
         private readonly IMongoCollection<ProductDetail> _productDetailCollection;
         private readonly IMapper _mapper;
@@ -39,6 +39,12 @@ namespace MultiShop.Catalog.Services.ProductDetailServices
         public async Task<GetByIdProductDetailDTO> GetByIdProductDetailAsync(string id)
         {
             var productDetail = await _productDetailCollection.Find(x => x.ProductDetailID == id).FirstOrDefaultAsync();
+            return _mapper.Map<GetByIdProductDetailDTO>(productDetail);
+        }
+
+        public async Task<GetByIdProductDetailDTO> GetProductDetailByProductId(string id)
+        {
+            var productDetail = await _productDetailCollection.Find(x => x.ProductID == id).FirstOrDefaultAsync();
             return _mapper.Map<GetByIdProductDetailDTO>(productDetail);
         }
 

@@ -2,7 +2,6 @@
 using MultiShop.Catalog.DTOs.ProductImageDTOs;
 using MultiShop.Catalog.Services.ProductImageServices;
 
-
 namespace MultiShop.Catalog.Controllers
 {
     [Route("api/[controller]")]
@@ -22,28 +21,38 @@ namespace MultiShop.Catalog.Controllers
             var productImageList = await _productImageService.GetAllProductImagesAsync();
 
             return Ok(productImageList);
-
         }
+
+        [HttpGet("ProductImagesByProductId")]
+        public async Task<IActionResult> ProductImagesByProductId(string id)
+        {
+            var productImages = await _productImageService.GetProductImagesByProductId(id);
+
+            return Ok(productImages);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductImageById(string id)
         {
             var productImage = await _productImageService.GetByIdProductImageAsync(id);
 
             return Ok(productImage);
-
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductImageDTO createProductImageDTO)
         {
             await _productImageService.CreateProductImageAsync(createProductImageDTO);
             return Ok("A product image has been created successfully");
         }
+
         [HttpDelete]
         public async Task<IActionResult> DeleteProductImage(string id)
         {
             await _productImageService.DeleteProductImageAsync(id);
             return Ok("A product image has been deleted successfully");
         }
+
         [HttpPut]
         public async Task<IActionResult> UpdateProductImage(UpdateProductImageDTO updateProductImageDTO)
         {

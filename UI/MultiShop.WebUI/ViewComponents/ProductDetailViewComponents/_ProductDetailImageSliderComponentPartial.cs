@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductDTOs;
+using MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductImageDTOs;
 
 namespace MultiShop.WebUI.ViewComponents.ProductDetailViewComponents
 {
@@ -14,13 +14,21 @@ namespace MultiShop.WebUI.ViewComponents.ProductDetailViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(string productId)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetFromJsonAsync<UpdateProductDTO>("https://localhost:7135/api/productimage/" + productId);
-            if (response != null)
+            try
             {
-                return View(response);
+                var client = _httpClientFactory.CreateClient();
+                var response = await client.GetFromJsonAsync<GetByIdProductImageDTO>("https://localhost:7135/api/ProductImage/ProductImagesByProductId?id=" + productId);
+                if (response != null)
+                {
+                    return View(response);
+                }
+                return View();
             }
-            return View();
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
     }
 }
