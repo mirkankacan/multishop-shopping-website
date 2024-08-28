@@ -54,5 +54,12 @@ namespace MultiShop.Comment.Controllers
             await _commentContext.SaveChangesAsync();
             return Ok("A comment has been updated successfully");
         }
+
+        [HttpGet("CommentListByProductId")]
+        public async Task<IActionResult> CommentListByProductId(string productId)
+        {
+            var values = await _commentContext.UserComments.Where(x => x.ProductID == productId).ToListAsync();
+            return Ok(values);
+        }
     }
 }

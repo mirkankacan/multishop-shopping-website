@@ -22,7 +22,13 @@
                         <input type="text" class="form-control" asp-for="Email" />
                         <br />
                         <label>Comment Detail</label>
-                        <textarea class="form-control" style="resize:vertical;" asp-for="CommentDetail"></textarea>
+                        <textarea class="form-control" rows="3" style="resize:vertical;" asp-for="CommentDetail"></textarea>
+                        <br />
+                        <label>Image</label>
+                        <input type="text" class="form-control" asp-for="ImageUrl" />
+                        <br />
+                        <label>Rating</label>
+                        <input type="number" class="form-control" max="5" min="0" asp-for="Rating" />
                         <br />
                         <label>Status</label>
                         <input type="text" class="form-control" asp-for="Status" />

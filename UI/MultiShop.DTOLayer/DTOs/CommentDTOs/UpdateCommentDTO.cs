@@ -11,5 +11,6 @@
         public DateTime CreationDate { get; set; }
         public bool Status { get; set; }
         public string ProductID { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

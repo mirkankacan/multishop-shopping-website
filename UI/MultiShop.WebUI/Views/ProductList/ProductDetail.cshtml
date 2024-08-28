@@ -1,9 +1,7 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "ProductDetail";
     Layout = "~/Views/UILayout/_UILayout.cshtml";
 }
-
 
 <!-- Breadcrumb Start -->
 <div class="container-fluid">
@@ -18,13 +16,12 @@
     </div>
 </div>
 <!-- Breadcrumb End -->
-
 <!-- Shop Detail Start -->
 <div class="container-fluid pb-5">
     <div class="row px-xl-5">
 
         @await Component.InvokeAsync("_ProductDetailImageSliderComponentPartial", new { productId = ViewBag.ProductId })
-        @await Component.InvokeAsync("_ProductDetailFeatureComponentPartial", new { productId = ViewBag.ProductId})
+        @await Component.InvokeAsync("_ProductDetailFeatureComponentPartial", new { productId = ViewBag.ProductId })
 
     </div>
     <div class="row px-xl-5">
@@ -39,8 +36,7 @@
 
                     @await Component.InvokeAsync("_ProductDetailDescriptionComponentPartial", new { productId = ViewBag.ProductId })
                     @await Component.InvokeAsync("_ProductDetailInformationComponentPartial", new { productId = ViewBag.ProductId })
-                    @await Component.InvokeAsync("_ProductDetailReviewComponentPartial", new { productId = ViewBag.ProductId })
-
+                    @await Component.InvokeAsync("_ProductDetailReviewComponentPartial", new { productId = ViewBag.ProductId }) 
                 </div>
             </div>
         </div>

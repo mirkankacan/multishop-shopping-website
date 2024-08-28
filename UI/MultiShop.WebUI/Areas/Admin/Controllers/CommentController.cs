@@ -75,5 +75,21 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+        [Route("CreateComment"), HttpPost]
+        public async Task<IActionResult> CreateComment(CreateCommentDTO createCommentDTO)
+        {
+            createCommentDTO.CommentID = Guid.NewGuid();
+            createCommentDTO.CreationDate = DateTime.Now;
+            createCommentDTO.ImageUrl = "";
+            createCommentDTO.Status = false;
+
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.PostAsJsonAsync("https://localhost:7171/api/Comment", createCommentDTO);
+            if (response.IsSuccessStatusCode)
+            {
+                return View();
+            }
+            return View();
+        }
     }
 }
