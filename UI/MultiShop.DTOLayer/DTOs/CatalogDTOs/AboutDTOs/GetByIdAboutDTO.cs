@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.DTOLayer.DTOs.CatalogDTOs.AboutDTOs
 {
-    public class GetByIdAboutDTO
+    public record GetByIdAboutDTO
     {
         public string AboutID { get; set; }
         public string Description { get; set; }

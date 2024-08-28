@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductDTOs
 {
-    public class CreateProductDTO
+    public record CreateProductDTO
     {
         public string ProductName { get; set; }
         public decimal ProductPrice { get; set; }

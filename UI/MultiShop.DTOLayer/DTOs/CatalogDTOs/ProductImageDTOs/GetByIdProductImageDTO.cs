@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductImageDTOs
 {
-    public class GetByIdProductImageDTO
+    public record GetByIdProductImageDTO
     {
         public string ProductImageID { get; set; }
         public string Image1 { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.Catalog.DTOs.FeatureSliderDTOs
 {
-    public class GetByIdFeatureSliderDTO
+    public record GetByIdFeatureSliderDTO
     {
         public string FeatureSliderID { get; set; }
         public string Title { get; set; }

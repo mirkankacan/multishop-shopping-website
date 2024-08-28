@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.Catalog.DTOs.BrandDTOs
 {
-    public class UpdateBrandDTO
+    public record UpdateBrandDTO
     {
         public string BrandID { get; set; }
         public string BrandName { get; set; }

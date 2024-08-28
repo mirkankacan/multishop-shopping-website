@@ -1,0 +1,51 @@
+﻿@model List<MultiShop.DTOLayer.DTOs.CommentDTOs.ResultCommentDTO>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+
+}
+
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>@ViewBag.v3</h4>
+                <br />
+                <div class="bs-example" data-example-id="simple-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>User</th>
+                                <th>Comment</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Delete</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@item.NameSurname</td>
+                                    <td>@item.CommentDetail</td>
+                                    <td>@item.CreationDate.ToString("dd.MM.yyyy HH:mm")</td>
+                                    <td>@item.Status</td>
+                                    <td><a href="/Admin/Comment/DeleteComment/@item.CommentID" class="btn btn-danger btn-block">Delete</a></td>
+                                    <td><a href="/Admin/Comment/UpdateComment/@item.CommentID" class="btn btn-warning btn-block">Update</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/Admin/Comments/CreateComments" class="btn btn-success">Create a New Comments</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MultiShop.Cargo.DTOLayer.DTOs.CargoOperationDTOs
+﻿namespace MultiShop.Cargo.DTOLayer.DTOs.CargoOperationDTOs
 {
-    public class CreateCargoOperationDTO
+    public record CreateCargoOperationDTO
     {
         public string CargoBarcode { get; set; }
         public string Description { get; set; }

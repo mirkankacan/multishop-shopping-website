@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.DTOLayer.DTOs.CatalogDTOs.SpecialOfferDTOs
 {
-    public class ResultSpecialOfferDTO
+    public record ResultSpecialOfferDTO
     {
         public string SpecialOfferID { get; set; }
         public string Title { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.Basket.DTOs
 {
-    public class BasketItemDTO
+    public record BasketItemDTO
     {
         public string ProductID { get; set; }
         public string ProductName { get; set; }

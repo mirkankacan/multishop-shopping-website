@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.Catalog.DTOs.AboutDTOs
 {
-    public class CreateAboutDTO
+    public record CreateAboutDTO
     {
         public string Description { get; set; }
         public string Address { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.DTOLayer.DTOs.CatalogDTOs.OfferDiscountDTOs
 {
-    public class ResultOfferDiscountDTO
+    public record ResultOfferDiscountDTO
     {
         public string OfferDiscountID { get; set; }
         public string Title { get; set; }

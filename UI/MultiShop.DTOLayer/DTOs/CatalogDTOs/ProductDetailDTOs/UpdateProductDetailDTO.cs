@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductDetailDTOs
 {
-    public class UpdateProductDetailDTO
+    public record UpdateProductDetailDTO
     {
         public string ProductDetailID { get; set; }
         public string ProductDescription { get; set; }

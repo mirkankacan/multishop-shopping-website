@@ -1,6 +1,6 @@
 ﻿namespace MultiShop.DTOLayer.DTOs.CatalogDTOs.BrandDTOs
 {
-    public class GetByIdBrandDTO
+    public record GetByIdBrandDTO
     {
         public string BrandID { get; set; }
         public string BrandName { get; set; }

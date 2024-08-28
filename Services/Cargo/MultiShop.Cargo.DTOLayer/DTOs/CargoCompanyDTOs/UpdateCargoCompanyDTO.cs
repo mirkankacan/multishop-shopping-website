@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MultiShop.Cargo.DTOLayer.DTOs.CargoCompanyDTOs
+﻿namespace MultiShop.Cargo.DTOLayer.DTOs.CargoCompanyDTOs
 {
-    public class UpdateCargoCompanyDTO
+    public record UpdateCargoCompanyDTO
     {
         public int CargoCompanyID { get; set; }
         public string CargoCompanyName { get; set; }

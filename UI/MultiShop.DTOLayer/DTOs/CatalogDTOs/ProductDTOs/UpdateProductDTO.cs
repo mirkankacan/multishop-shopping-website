@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductDTOs
+﻿namespace MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductDTOs
 {
-    public class UpdateProductDTO
+    public record UpdateProductDTO
     {
         public string ProductID { get; set; }
         public string ProductName { get; set; }
