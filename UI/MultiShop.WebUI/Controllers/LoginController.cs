@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.DTOLayer.DTOs.CatalogDTOs.ContactDTOs;
+using MultiShop.DTOLayer.DTOs.IdentityDTOs.LoginDTOs;
 
 namespace MultiShop.WebUI.Controllers
 {
-    public class ContactController : Controller
+    public class LoginController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public ContactController(IHttpClientFactory httpClientFactory)
+        public LoginController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -19,12 +19,10 @@ namespace MultiShop.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(CreateContactDTO createContactDTO)
+        public async Task<IActionResult> Index(CreateLoginDTO createLoginDTO)
         {
-            createContactDTO.IsRead = false;
-            createContactDTO.SendDate = DateTime.Now;
             var client = _httpClientFactory.CreateClient();
-            var response = await client.PostAsJsonAsync("https://localhost:7135/api/Contact", createContactDTO);
+            var response = await client.PostAsJsonAsync("http://localhost:5001/api/login", createLoginDTO);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Home");

@@ -18,12 +18,13 @@ namespace MultiShop.IdentityServer.Controller
         {
             _userManager = userManager;
         }
+
         [HttpPost]
         public async Task<IActionResult> UserRegister(UserRegisterDTO userRegisterDTO)
         {
             var newUser = new ApplicationUser()
             {
-                UserName = userRegisterDTO.Username,
+                UserName = userRegisterDTO.Email,
                 Email = userRegisterDTO.Email,
                 Name = userRegisterDTO.Name,
                 Surname = userRegisterDTO.Surname,
