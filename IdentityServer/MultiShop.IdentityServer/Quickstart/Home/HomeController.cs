@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace IdentityServerHost.Quickstart.UI
 {
     [SecurityHeaders]
-    [AllowAnonymous]
+    
     public class HomeController : Controller
     {
         private readonly IIdentityServerInteractionService _interaction;

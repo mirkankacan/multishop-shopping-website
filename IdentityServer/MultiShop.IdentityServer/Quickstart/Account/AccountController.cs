@@ -1,6 +1,5 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
+﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved. Licensed under the Apache
+// License, Version 2.0. See LICENSE in the project root for license information.
 
 using IdentityModel;
 using IdentityServer4.Events;
@@ -8,12 +7,11 @@ using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
-using MultiShop.IdentityServer.Models;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MultiShop.IdentityServer.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,7 +19,6 @@ using System.Threading.Tasks;
 namespace IdentityServerHost.Quickstart.UI
 {
     [SecurityHeaders]
-    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -80,16 +77,16 @@ namespace IdentityServerHost.Quickstart.UI
             {
                 if (context != null)
                 {
-                    // if the user cancels, send a result back into IdentityServer as if they 
-                    // denied the consent (even if this client does not require consent).
-                    // this will send back an access denied OIDC error response to the client.
+                    // if the user cancels, send a result back into IdentityServer as if they denied
+                    // the consent (even if this client does not require consent). this will send
+                    // back an access denied OIDC error response to the client.
                     await _interaction.DenyAuthorizationAsync(context, AuthorizationError.AccessDenied);
 
                     // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
                     if (context.IsNativeClient())
                     {
-                        // The client is native, so this change in how to
-                        // return the response is for better UX for the end user.
+                        // The client is native, so this change in how to return the response is for
+                        // better UX for the end user.
                         return this.LoadingPage("Redirect", model.ReturnUrl);
                     }
 
@@ -114,8 +111,8 @@ namespace IdentityServerHost.Quickstart.UI
                     {
                         if (context.IsNativeClient())
                         {
-                            // The client is native, so this change in how to
-                            // return the response is for better UX for the end user.
+                            // The client is native, so this change in how to return the response is
+                            // for better UX for the end user.
                             return this.LoadingPage("Redirect", model.ReturnUrl);
                         }
 
@@ -139,7 +136,7 @@ namespace IdentityServerHost.Quickstart.UI
                     }
                 }
 
-                await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials", clientId:context?.Client.ClientId));
+                await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials", clientId: context?.Client.ClientId));
                 ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
             }
 
@@ -148,7 +145,6 @@ namespace IdentityServerHost.Quickstart.UI
             return View(vm);
         }
 
-        
         /// <summary>
         /// Show logout page
         /// </summary>
@@ -160,8 +156,8 @@ namespace IdentityServerHost.Quickstart.UI
 
             if (vm.ShowLogoutPrompt == false)
             {
-                // if the request for logout was properly authenticated from IdentityServer, then
-                // we don't need to show the prompt and can just log the user out directly.
+                // if the request for logout was properly authenticated from IdentityServer, then we
+                // don't need to show the prompt and can just log the user out directly.
                 return await Logout(vm);
             }
 
@@ -190,9 +186,8 @@ namespace IdentityServerHost.Quickstart.UI
             // check if we need to trigger sign-out at an upstream identity provider
             if (vm.TriggerExternalSignout)
             {
-                // build a return URL so the upstream provider will redirect back
-                // to us after the user has logged out. this allows us to then
-                // complete our single sign-out processing.
+                // build a return URL so the upstream provider will redirect back to us after the
+                // user has logged out. this allows us to then complete our single sign-out processing.
                 string url = Url.Action("Logout", new { logoutId = vm.LogoutId });
 
                 // this triggers a redirect to the external provider for sign-out
@@ -208,10 +203,10 @@ namespace IdentityServerHost.Quickstart.UI
             return View();
         }
 
-
         /*****************************************/
         /* helper APIs for the AccountController */
         /*****************************************/
+
         private async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl)
         {
             var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
@@ -297,14 +292,15 @@ namespace IdentityServerHost.Quickstart.UI
                 return vm;
             }
 
-            // show the logout prompt. this prevents attacks where the user
-            // is automatically signed out by another malicious web page.
+            // show the logout prompt. this prevents attacks where the user is automatically signed
+            // out by another malicious web page.
             return vm;
         }
 
         private async Task<LoggedOutViewModel> BuildLoggedOutViewModelAsync(string logoutId)
         {
-            // get context information (client name, post logout redirect URI and iframe for federated signout)
+            // get context information (client name, post logout redirect URI and iframe for
+            // federated signout)
             var logout = await _interaction.GetLogoutContextAsync(logoutId);
 
             var vm = new LoggedOutViewModel
@@ -326,9 +322,9 @@ namespace IdentityServerHost.Quickstart.UI
                     {
                         if (vm.LogoutId == null)
                         {
-                            // if there's no current logout context, we need to create one
-                            // this captures necessary info from the current logged in user
-                            // before we signout and redirect away to the external IdP for signout
+                            // if there's no current logout context, we need to create one this
+                            // captures necessary info from the current logged in user before we
+                            // signout and redirect away to the external IdP for signout
                             vm.LogoutId = await _interaction.CreateLogoutContextAsync();
                         }
 

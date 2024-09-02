@@ -5,7 +5,7 @@ using MultiShop.Catalog.Services.ProductServices;
 
 namespace MultiShop.Catalog.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : Controller
@@ -22,44 +22,48 @@ namespace MultiShop.Catalog.Controllers
         {
             var productList = await _productService.GetAllProductsAsync();
             return Ok(productList);
-
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductById(string id)
         {
             var product = await _productService.GetByIdProductAsync(id);
             return Ok(product);
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductDTO createProductDTO)
         {
             await _productService.CreateProductAsync(createProductDTO);
             return Ok("A product has been created successfully");
         }
+
         [HttpDelete]
         public async Task<IActionResult> DeleteProduct(string id)
         {
             await _productService.DeleteProductAsync(id);
             return Ok("A product has been deleted successfully");
         }
+
         [HttpPut]
         public async Task<IActionResult> UpdateProduct(UpdateProductDTO updateProductDTO)
         {
             await _productService.UpdateProductAsync(updateProductDTO);
             return Ok("A product has been updated successfully");
         }
+
         [HttpGet("ProductListWithCategory")]
         public async Task<IActionResult> ProductListWithCategory()
         {
             var values = await _productService.GetProductsWithCategoryAsync();
             return Ok(values);
         }
+
         [HttpGet("ProductListByCategoryId")]
         public async Task<IActionResult> ProductListByCategoryId(string id)
         {
             var values = await _productService.GetProductsByCategoryIdAsync(id);
             return Ok(values);
         }
-
     }
 }

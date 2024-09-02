@@ -5,7 +5,7 @@ using MultiShop.DTOLayer.DTOs.CatalogDTOs.FeatureSliderDTOs;
 namespace MultiShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
+    
     [Route("Admin/FeatureSlider")]
     public class FeatureSliderController : Controller
     {

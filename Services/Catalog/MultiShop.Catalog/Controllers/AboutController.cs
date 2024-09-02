@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MultiShop.Catalog.DTOs.AboutDTOs;
 using MultiShop.Catalog.Services.AboutServices;
 
 namespace MultiShop.Catalog.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AboutController : ControllerBase
@@ -21,28 +23,30 @@ namespace MultiShop.Catalog.Controllers
             var aboutList = await _aboutService.GetAllAboutsAsync();
 
             return Ok(aboutList);
-
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAboutById(string id)
         {
             var about = await _aboutService.GetByIdAboutAsync(id);
 
             return Ok(about);
-
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateAbout(CreateAboutDTO createAboutDTO)
         {
             await _aboutService.CreateAboutAsync(createAboutDTO);
             return Ok("A About has been created successfully");
         }
+
         [HttpDelete]
         public async Task<IActionResult> DeleteAbout(string id)
         {
             await _aboutService.DeleteAboutAsync(id);
             return Ok("A About has been deleted successfully");
         }
+
         [HttpPut]
         public async Task<IActionResult> UpdateAbout(UpdateAboutDTO updateAboutDTO)
         {

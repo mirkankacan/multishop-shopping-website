@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace MultiShop.IdentityServer.Controller
 {
-    [AllowAnonymous]
     [Route("api/[controller]")]
+    [AllowAnonymous]
     [ApiController]
     public class RegisterController : ControllerBase
     {

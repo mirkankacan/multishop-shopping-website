@@ -7,7 +7,7 @@ using MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductDTOs;
 namespace MultiShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
+    
     [Route("Admin/Product")]
     public class ProductController : Controller
     {

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MultiShop.Catalog.DTOs.FeatureDTOs;
 using MultiShop.Catalog.Services.FeatureServices;
 
 namespace MultiShop.Catalog.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FeatureController : ControllerBase
@@ -21,28 +23,30 @@ namespace MultiShop.Catalog.Controllers
             var featureList = await _featureService.GetAllFeaturesAsync();
 
             return Ok(featureList);
-
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFeatureById(string id)
         {
             var feature = await _featureService.GetByIdFeatureAsync(id);
 
             return Ok(feature);
-
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateFeature(CreateFeatureDTO createFeatureDTO)
         {
             await _featureService.CreateFeatureAsync(createFeatureDTO);
             return Ok("A feature has been created successfully");
         }
+
         [HttpDelete]
         public async Task<IActionResult> DeleteFeature(string id)
         {
             await _featureService.DeleteFeatureAsync(id);
             return Ok("A feature has been deleted successfully");
         }
+
         [HttpPut]
         public async Task<IActionResult> UpdateFeature(UpdateFeatureDTO updateFeatureDTO)
         {

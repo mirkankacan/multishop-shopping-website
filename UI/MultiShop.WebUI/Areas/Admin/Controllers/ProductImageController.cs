@@ -5,7 +5,7 @@ using MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductImageDTOs;
 namespace MultiShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
+    
     [Route("Admin/ProductImage")]
     public class ProductImageController : Controller
     {

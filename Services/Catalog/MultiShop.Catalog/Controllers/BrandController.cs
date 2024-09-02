@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MultiShop.Catalog.DTOs.BrandDTOs;
 using MultiShop.Catalog.Services.BrandServices;
 
 namespace MultiShop.Catalog.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BrandController : ControllerBase
@@ -21,28 +23,30 @@ namespace MultiShop.Catalog.Controllers
             var brandList = await _brandService.GetAllBrandsAsync();
 
             return Ok(brandList);
-
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBrandById(string id)
         {
             var brand = await _brandService.GetByIdBrandAsync(id);
 
             return Ok(brand);
-
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateBrand(CreateBrandDTO createBrandDTO)
         {
             await _brandService.CreateBrandAsync(createBrandDTO);
             return Ok("A Brand has been created successfully");
         }
+
         [HttpDelete]
         public async Task<IActionResult> DeleteBrand(string id)
         {
             await _brandService.DeleteBrandAsync(id);
             return Ok("A Brand has been deleted successfully");
         }
+
         [HttpPut]
         public async Task<IActionResult> UpdateBrand(UpdateBrandDTO updateBrandDTO)
         {

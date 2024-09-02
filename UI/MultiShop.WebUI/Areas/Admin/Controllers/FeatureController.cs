@@ -5,7 +5,7 @@ using MultiShop.DTOLayer.DTOs.CatalogDTOs.FeatureDTOs;
 namespace MultiShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
+    
     [Route("Admin/Feature")]
     public class FeatureController : Controller
     {

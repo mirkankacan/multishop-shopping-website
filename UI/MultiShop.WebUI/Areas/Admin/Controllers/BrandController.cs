@@ -1,19 +1,19 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.DTOLayer.DTOs.CatalogDTOs.BrandDTOs;
 
 namespace MultiShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
     [Route("Admin/Brand")]
     public class BrandController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+
         public BrandController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
+
         [Route("Index")]
         public async Task<IActionResult> Index()
         {
@@ -31,6 +31,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 
             return View();
         }
+
         [Route("CreateBrand"), HttpGet]
         public IActionResult CreateBrand()
         {
@@ -40,6 +41,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v0 = "Brand Operations";
             return View();
         }
+
         [Route("CreateBrand"), HttpPost]
         public async Task<IActionResult> CreateBrand(CreateBrandDTO createBrandDTO)
         {
@@ -51,6 +53,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+
         [Route("DeleteBrand/{id}")]
         public async Task<IActionResult> DeleteBrand(string id)
         {
@@ -79,6 +82,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+
         [Route("UpdateBrand/{id}"), HttpPost]
         public async Task<IActionResult> UpdateBrand(UpdateBrandDTO updateBrandDTO)
         {

@@ -19,7 +19,7 @@ using Microsoft.Extensions.Logging;
 namespace IdentityServerHost.Quickstart.UI
 {
     [SecurityHeaders]
-    [AllowAnonymous]
+    
     public class ExternalController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
