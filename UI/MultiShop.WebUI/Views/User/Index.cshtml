@@ -1,0 +1,23 @@
+﻿@model MultiShop.WebUI.Models.UserDetailViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="alert alert-info">@Model.ID</div>
+        <div class="alert alert-warning">@Model.Name</div>
+        <div class="alert alert-success">@Model.Surname</div>
+        <div class="alert alert-primary">@Model.Email</div>
+    </div>
+</body>
+</html>

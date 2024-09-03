@@ -5,5 +5,7 @@ namespace MultiShop.WebUI.Services.Interfaces
     public interface IIdentityService
     {
         Task<bool> SignIn(CreateLoginDTO createLoginDTO);
+
+        Task<bool> GetRefreshToken();
     }
 }
