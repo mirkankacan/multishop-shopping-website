@@ -25,7 +25,7 @@ namespace MultiShop.WebUI.Services.Concrete
             _serviceApiSettings = serviceApiSettings.Value;
         }
 
-        public async Task<bool> SignIn(CreateLoginDTO createLoginDTO)
+        public async Task<bool> SignIn(CreateLoginDTO createLoginDTO, CancellationToken cancellationToken)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace MultiShop.WebUI.Services.Concrete
                     Address = discoveryEndPoint.TokenEndpoint,
                 };
 
-                var tokenResponse = await _httpClient.RequestPasswordTokenAsync(passwordTokenRequest);
+                var tokenResponse = await _httpClient.RequestPasswordTokenAsync(passwordTokenRequest, cancellationToken);
 
                 if (tokenResponse.IsError)
                 {
@@ -63,7 +63,7 @@ namespace MultiShop.WebUI.Services.Concrete
                     Token = tokenResponse.AccessToken,
                     Address = discoveryEndPoint.UserInfoEndpoint
                 };
-                var userInfoResponse = await _httpClient.GetUserInfoAsync(userInfoRequest);
+                var userInfoResponse = await _httpClient.GetUserInfoAsync(userInfoRequest, cancellationToken);
 
                 if (userInfoResponse.IsError)
                 {
@@ -106,7 +106,7 @@ namespace MultiShop.WebUI.Services.Concrete
             }
         }
 
-        public async Task<bool> GetRefreshToken()
+        public async Task<bool> GetRefreshToken(CancellationToken cancellationToken)
         {
             try
             {
@@ -138,7 +138,7 @@ namespace MultiShop.WebUI.Services.Concrete
                     Address = discoveryEndPoint.TokenEndpoint,
                 };
 
-                var tokenByRefreshToken = await _httpClient.RequestRefreshTokenAsync(refreshTokenRequest);
+                var tokenByRefreshToken = await _httpClient.RequestRefreshTokenAsync(refreshTokenRequest, cancellationToken);
                 if (tokenByRefreshToken.IsError)
                 {
                     return false;

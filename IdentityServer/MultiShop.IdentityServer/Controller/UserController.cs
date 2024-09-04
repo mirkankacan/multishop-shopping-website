@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MultiShop.IdentityServer.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+using static IdentityServer4.IdentityServerConstants;
 
 namespace MultiShop.IdentityServer.Controller
 {
+    [Authorize(LocalApi.PolicyName)]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -18,11 +21,11 @@ namespace MultiShop.IdentityServer.Controller
             _userManager = userManager;
         }
 
-        [HttpGet]
+        [HttpGet("getuser")]
         public async Task<IActionResult> GetUserInfo()
         {
             var userClaim = User.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub);
-            var user = await _userManager.FindByNameAsync(userClaim.Value);
+            var user = await _userManager.FindByIdAsync(userClaim.Value);
             UserDetailViewModel userDetailViewModel = new()
             {
                 Email = user.Email,

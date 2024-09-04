@@ -12,9 +12,9 @@ namespace MultiShop.WebUI.Controllers
             _userService = userService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-            var user = await _userService.GetUserInfo();
+            var user = await _userService.GetUserInfo(cancellationToken);
             return View(user);
         }
     }

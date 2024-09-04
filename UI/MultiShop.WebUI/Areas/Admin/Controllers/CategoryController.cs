@@ -1,37 +1,35 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.DTOLayer.DTOs.CatalogDTOs.CategoryDTOs;
+using MultiShop.WebUI.Services.CatalogServices.CategoryServices;
 
 namespace MultiShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    
     [Route("Admin/Category")]
     public class CategoryController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ICategoryService _categoryService;
 
-        public CategoryController(IHttpClientFactory httpClientFactory)
+        public CategoryController(ICategoryService categoryService)
         {
-            _httpClientFactory = httpClientFactory;
+            _categoryService = categoryService;
         }
+
         [Route("Index")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
             ViewBag.v1 = "Home";
             ViewBag.v2 = "Categories";
             ViewBag.v3 = "Category List";
             ViewBag.v0 = "Category Operations";
-
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetFromJsonAsync<List<ResultCategoryDTO>>("https://localhost:7135/api/category");
+            var response = await _categoryService.GetAllCategoriesAsync(cancellationToken);
             if (response != null)
             {
                 return View(response);
             }
-
             return View();
         }
+
         [Route("CreateCategory"), HttpGet]
         public IActionResult CreateCategory()
         {
@@ -41,22 +39,11 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v0 = "Category Operations";
             return View();
         }
+
         [Route("CreateCategory"), HttpPost]
-        public async Task<IActionResult> CreateCategory(CreateCategoryDTO createCategoryDTO)
+        public async Task<IActionResult> CreateCategory(CreateCategoryDTO createCategoryDTO, CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.PostAsJsonAsync("https://localhost:7135/api/category", createCategoryDTO);
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "Category", new { Area = "Admin" });
-            }
-            return View();
-        }
-        [Route("DeleteCategory/{id}")]
-        public async Task<IActionResult> DeleteCategory(string id)
-        {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.DeleteAsync($"https://localhost:7135/api/category?id={id}");
+            var response = await _categoryService.CreateCategoryAsync(createCategoryDTO, cancellationToken);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Category", new { Area = "Admin" });
@@ -64,27 +51,37 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             return View();
         }
 
+        [Route("DeleteCategory/{id}")]
+        public async Task<IActionResult> DeleteCategory(string id, CancellationToken cancellationToken)
+        {
+            var response = await _categoryService.DeleteCategoryAsync(id, cancellationToken);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Category", new { Area = "Admin" });
+            }
+            return RedirectToAction("Index", "Category", new { Area = "Admin" });
+        }
+
         [Route("UpdateCategory/{id}"), HttpGet]
-        public async Task<IActionResult> UpdateCategory(string id)
+        public async Task<IActionResult> UpdateCategory(string id, CancellationToken cancellationToken)
         {
             ViewBag.v1 = "Home";
             ViewBag.v2 = "Categories";
             ViewBag.v3 = "Update Category";
             ViewBag.v0 = "Category Operations";
 
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetFromJsonAsync<UpdateCategoryDTO>($"https://localhost:7135/api/category/{id}");
+            var response = await _categoryService.GetByIdCategoryAsync(id, cancellationToken);
             if (response != null)
             {
                 return View(response);
             }
             return View();
         }
+
         [Route("UpdateCategory/{id}"), HttpPost]
-        public async Task<IActionResult> UpdateCategory(UpdateCategoryDTO updateCategoryDTO)
+        public async Task<IActionResult> UpdateCategory(UpdateCategoryDTO updateCategoryDTO, CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.PutAsJsonAsync("https://localhost:7135/api/category", updateCategoryDTO);
+            var response = await _categoryService.UpdateCategoryAsync(updateCategoryDTO, cancellationToken);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Category", new { area = "Admin" });

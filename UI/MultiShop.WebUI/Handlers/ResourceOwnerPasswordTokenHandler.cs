@@ -7,8 +7,13 @@ namespace MultiShop.WebUI.Handlers
     public class ResourceOwnerPasswordTokenHandler : DelegatingHandler
     {
         private readonly IHttpContextAccessor _contextAccessor;
-
         private readonly IIdentityService _identityService;
+
+        public ResourceOwnerPasswordTokenHandler(IHttpContextAccessor contextAccessor, IIdentityService identityService)
+        {
+            _contextAccessor = contextAccessor;
+            _identityService = identityService;
+        }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
@@ -17,7 +22,7 @@ namespace MultiShop.WebUI.Handlers
             var response = await base.SendAsync(request, cancellationToken);
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                var tokenResponse = await _identityService.GetRefreshToken();
+                var tokenResponse = await _identityService.GetRefreshToken(cancellationToken);
                 if (tokenResponse)
                 {
                     request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);

@@ -24,13 +24,13 @@ namespace MultiShop.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(CreateLoginDTO createLoginDTO)
+        public async Task<IActionResult> Index(CreateLoginDTO createLoginDTO, CancellationToken cancellationToken)
         {
-            var loginStatus = await _identityService.SignIn(createLoginDTO);
+            var loginStatus = await _identityService.SignIn(createLoginDTO, cancellationToken);
             switch (loginStatus)
             {
                 case true:
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "User");
                     break;
 
                 case false:
