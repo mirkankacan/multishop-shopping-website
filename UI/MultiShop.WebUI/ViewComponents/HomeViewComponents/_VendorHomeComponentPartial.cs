@@ -1,20 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.DTOLayer.DTOs.CatalogDTOs.BrandDTOs;
+using MultiShop.WebUI.Services.CatalogServices.BrandServices;
 
 namespace MultiShop.WebUI.ViewComponents.HomeViewComponents
 {
     public class _VendorHomeComponentPartial : ViewComponent
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-        public _VendorHomeComponentPartial(IHttpClientFactory httpClientFactory)
+        private readonly IBrandService _brandService;
+
+        public _VendorHomeComponentPartial(IBrandService brandService)
         {
-            _httpClientFactory = httpClientFactory;
+            _brandService = brandService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetFromJsonAsync<List<ResultBrandDTO>>("https://localhost:7135/api/Brand");
+            var response = await _brandService.GetAllBrandsAsync(cancellationToken);
             if (response != null)
             {
                 return View(response);

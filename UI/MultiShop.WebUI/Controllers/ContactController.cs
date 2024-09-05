@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.DTOLayer.DTOs.CatalogDTOs.ContactDTOs;
+using MultiShop.WebUI.Services.CatalogServices.ContactServices;
 
 namespace MultiShop.WebUI.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IContactService _contactService;
 
-        public ContactController(IHttpClientFactory httpClientFactory)
+        public ContactController(IContactService contactService)
         {
-            _httpClientFactory = httpClientFactory;
+            _contactService = contactService;
         }
 
         [HttpGet]
@@ -19,12 +20,11 @@ namespace MultiShop.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(CreateContactDTO createContactDTO)
+        public async Task<IActionResult> Index(CreateContactDTO createContactDTO, CancellationToken cancellationToken)
         {
             createContactDTO.IsRead = false;
             createContactDTO.SendDate = DateTime.Now;
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.PostAsJsonAsync("https://localhost:7135/api/Contact", createContactDTO);
+            var response = await _contactService.CreateContactAsync(createContactDTO, cancellationToken);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "Home");

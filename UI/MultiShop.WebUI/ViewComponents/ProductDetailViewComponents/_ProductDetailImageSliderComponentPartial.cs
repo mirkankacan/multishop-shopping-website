@@ -1,23 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductImageDTOs;
+using MultiShop.WebUI.Services.CatalogServices.ProductImageServices;
 
 namespace MultiShop.WebUI.ViewComponents.ProductDetailViewComponents
 {
     public class _ProductDetailImageSliderComponentPartial : ViewComponent
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IProductImageService _productImageService;
 
-        public _ProductDetailImageSliderComponentPartial(IHttpClientFactory httpClientFactory)
+        public _ProductDetailImageSliderComponentPartial(IProductImageService productImageService)
         {
-            _httpClientFactory = httpClientFactory;
+            _productImageService = productImageService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(string productId)
+        public async Task<IViewComponentResult> InvokeAsync(string productId, CancellationToken cancellationToken)
         {
             try
             {
-                var client = _httpClientFactory.CreateClient();
-                var response = await client.GetFromJsonAsync<GetByIdProductImageDTO>("https://localhost:7135/api/ProductImage/ProductImagesByProductId?id=" + productId);
+                var response = await _productImageService.GetProductImagesByProductIdAsync(productId, cancellationToken);
                 if (response != null)
                 {
                     return View(response);
@@ -28,7 +27,6 @@ namespace MultiShop.WebUI.ViewComponents.ProductDetailViewComponents
             {
                 throw;
             }
-
         }
     }
 }

@@ -1,19 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.DTOLayer.DTOs.CatalogDTOs.AboutDTOs;
+using MultiShop.WebUI.Services.CatalogServices.AboutServices;
 
 namespace MultiShop.WebUI.ViewComponents.UILayoutViewComponents
 {
     public class _FooterUILayoutComponentPartial : ViewComponent
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-        public _FooterUILayoutComponentPartial(IHttpClientFactory httpClientFactory)
+        private readonly IAboutService _aboutService;
+        public _FooterUILayoutComponentPartial(IAboutService aboutService)
         {
-            _httpClientFactory = httpClientFactory;
+            _aboutService = aboutService;
         }
-        public async Task<IViewComponentResult> InvokeAsync()
+
+        public async Task<IViewComponentResult> InvokeAsync(CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetFromJsonAsync<List<ResultAboutDTO>>("https://localhost:7135/api/About");
+            var response = await _aboutService.GetAllAboutsAsync(cancellationToken);
             if (response != null)
             {
                 return View(response);

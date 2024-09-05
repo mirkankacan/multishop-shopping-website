@@ -30,7 +30,7 @@ namespace MultiShop.WebUI.Controllers
             switch (loginStatus)
             {
                 case true:
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "Home");
                     break;
 
                 case false:

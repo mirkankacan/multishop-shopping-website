@@ -13,5 +13,7 @@ namespace MultiShop.WebUI.Services.CatalogServices.ProductImageServices
         Task<HttpResponseMessage> DeleteProductImageAsync(string id, CancellationToken cancellationToken);
 
         Task<GetByIdProductImageDTO> GetByIdProductImageAsync(string id, CancellationToken cancellationToken);
+
+        Task<GetByIdProductImageDTO> GetProductImagesByProductIdAsync(string id, CancellationToken cancellationToken);
     }
 }

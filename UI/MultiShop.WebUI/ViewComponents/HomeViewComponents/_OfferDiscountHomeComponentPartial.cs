@@ -1,20 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.DTOLayer.DTOs.CatalogDTOs.OfferDiscountDTOs;
+using MultiShop.WebUI.Services.CatalogServices.OfferDiscountServices;
 
 namespace MultiShop.WebUI.ViewComponents.HomeViewComponents
 {
     public class _OfferDiscountHomeComponentPartial : ViewComponent
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IOfferDiscountService _offerDiscountService;
 
-        public _OfferDiscountHomeComponentPartial(IHttpClientFactory httpClientFactory)
+        public _OfferDiscountHomeComponentPartial(IOfferDiscountService offerDiscountService)
         {
-            _httpClientFactory = httpClientFactory;
+            _offerDiscountService = offerDiscountService;
         }
-        public async Task<IViewComponentResult> InvokeAsync()
+
+        public async Task<IViewComponentResult> InvokeAsync(CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetFromJsonAsync<List<ResultOfferDiscountDTO>>("https://localhost:7135/api/OfferDiscount");
+            var response = await _offerDiscountService.GetAllOfferDiscountsAsync(cancellationToken);
             if (response != null)
             {
                 return View(response);

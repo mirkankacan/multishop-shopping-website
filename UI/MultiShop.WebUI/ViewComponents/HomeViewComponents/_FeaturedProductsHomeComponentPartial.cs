@@ -1,20 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductDTOs;
+using MultiShop.WebUI.Services.CatalogServices.ProductServices;
 
 namespace MultiShop.WebUI.ViewComponents.HomeViewComponents
 {
     public class _FeaturedProductsHomeComponentPartial : ViewComponent
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-        public _FeaturedProductsHomeComponentPartial(IHttpClientFactory httpClientFactory)
+        private readonly IProductService _productService;
+
+        public _FeaturedProductsHomeComponentPartial(IProductService productService)
         {
-            _httpClientFactory = httpClientFactory;
+            _productService = productService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetFromJsonAsync<List<ResultProductDTO>>("https://localhost:7135/api/product");
+            var response = await _productService.GetAllProductsAsync(cancellationToken);
             if (response != null)
             {
                 return View(response);

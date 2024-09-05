@@ -35,6 +35,12 @@ namespace MultiShop.WebUI.Services.CatalogServices.ProductImageServices
             return response ?? new GetByIdProductImageDTO();
         }
 
+        public async Task<GetByIdProductImageDTO> GetProductImagesByProductIdAsync(string id, CancellationToken cancellationToken)
+        {
+            var response = await _httpClient.GetFromJsonAsync<GetByIdProductImageDTO>($"ProductImage/ProductImagesByProductId?id={id}", cancellationToken);
+            return response ?? new GetByIdProductImageDTO();
+        }
+
         public async Task<HttpResponseMessage> UpdateProductImageAsync(UpdateProductImageDTO updateProductImageDTO, CancellationToken cancellationToken)
         {
             var response = await _httpClient.PutAsJsonAsync("ProductImage", updateProductImageDTO, cancellationToken);

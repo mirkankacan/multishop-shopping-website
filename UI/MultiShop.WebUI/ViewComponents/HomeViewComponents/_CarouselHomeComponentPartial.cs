@@ -1,20 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiShop.DTOLayer.DTOs.CatalogDTOs.FeatureSliderDTOs;
+using MultiShop.WebUI.Services.CatalogServices.FeatureSliderServices;
 
 namespace MultiShop.WebUI.ViewComponents.HomeViewComponents
 {
     public class _CarouselHomeComponentPartial : ViewComponent
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IFeatureSliderService _featureSliderService;
 
-        public _CarouselHomeComponentPartial(IHttpClientFactory httpClientFactory)
+        public _CarouselHomeComponentPartial(IFeatureSliderService featureSliderService)
         {
-            _httpClientFactory = httpClientFactory;
+            _featureSliderService = featureSliderService;
         }
-        public async Task<IViewComponentResult> InvokeAsync()
+
+        public async Task<IViewComponentResult> InvokeAsync(CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseValue = await client.GetFromJsonAsync<List<ResultFeatureSliderDTO>>("https://localhost:7135/api/FeatureSlider");
+            var responseValue = await _featureSliderService.GetAllFeatureSlidersAsync(cancellationToken);
             if (responseValue != null)
             {
                 return View(responseValue);

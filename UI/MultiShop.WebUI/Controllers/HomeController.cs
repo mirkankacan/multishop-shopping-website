@@ -6,6 +6,8 @@ namespace MultiShop.WebUI.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.Directory1 = "Home";
+            ViewBag.Directory2 = "";
             return View();
         }
     }
