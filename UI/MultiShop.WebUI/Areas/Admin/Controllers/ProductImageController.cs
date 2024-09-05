@@ -1,35 +1,32 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductImageDTOs;
+using MultiShop.WebUI.Services.CatalogServices.ProductImageServices;
 
 namespace MultiShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    
     [Route("Admin/ProductImage")]
     public class ProductImageController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IProductImageService _productImageService;
 
-        public ProductImageController(IHttpClientFactory httpClientFactory)
+        public ProductImageController(IProductImageService productImageService)
         {
-            _httpClientFactory = httpClientFactory;
+            _productImageService = productImageService;
         }
 
         [Route("ProductImageDetail/{id}"), HttpGet]
-        public async Task<IActionResult> ProductImageDetail(string id)
+        public async Task<IActionResult> ProductImageDetail(string id, CancellationToken cancellationToken)
         {
             ViewBag.v1 = "Home";
             ViewBag.v2 = "Categories";
             ViewBag.v3 = "Update Product Image";
             ViewBag.v0 = "Product Image Operations";
 
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7135/api/ProductImage/ProductImagesByProductId?id={id}");
-            if (responseMessage.IsSuccessStatusCode && responseMessage.Content.Headers.ContentLength > 0)
+            var responseGet = await _productImageService.GetAllProductImagesAsync(cancellationToken);
+            if (responseGet != null)
             {
-                var response = await responseMessage.Content.ReadFromJsonAsync<UpdateProductImageDTO>();
-                return View(response);
+                return View(responseGet);
             }
             CreateProductImageDTO createProductImageDTO = new()
             {
@@ -39,15 +36,14 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
                 Image3 = "",
                 Image4 = "",
             };
-            var responsePost = await client.PostAsJsonAsync("https://localhost:7135/api/ProductImage", createProductImageDTO);
+            var responsePost = await _productImageService.CreateProductImageAsync(createProductImageDTO, cancellationToken);
             return View();
         }
 
         [Route("ProductImageDetail/{id}"), HttpPost]
-        public async Task<IActionResult> ProductImageDetail(UpdateProductImageDTO updateProductImageDTO)
+        public async Task<IActionResult> ProductImageDetail(UpdateProductImageDTO updateProductImageDTO, CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.PutAsJsonAsync("https://localhost:7135/api/ProductImage", updateProductImageDTO);
+            var response = await _productImageService.UpdateProductImageAsync(updateProductImageDTO, cancellationToken);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("ProductListWithCategory", "Product", new { area = "Admin" });

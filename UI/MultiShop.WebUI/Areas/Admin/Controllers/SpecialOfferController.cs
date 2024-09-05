@@ -1,30 +1,29 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.DTOLayer.DTOs.CatalogDTOs.SpecialOfferDTOs;
+using MultiShop.WebUI.Services.CatalogServices.SpecialOfferServices;
 
 namespace MultiShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    
     [Route("Admin/SpecialOffer")]
     public class SpecialOfferController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ISpecialOfferService _specialOfferService;
 
-        public SpecialOfferController(IHttpClientFactory httpClientFactory)
+        public SpecialOfferController(ISpecialOfferService specialOfferService)
         {
-            _httpClientFactory = httpClientFactory;
+            _specialOfferService = specialOfferService;
         }
+
         [Route("Index")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
             ViewBag.v1 = "Home";
             ViewBag.v2 = "Categories";
             ViewBag.v3 = "Special Offer List";
             ViewBag.v0 = "Special Offer Operations";
 
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetFromJsonAsync<List<ResultSpecialOfferDTO>>("https://localhost:7135/api/SpecialOffer");
+            var response = await _specialOfferService.GetAllSpecialOffersAsync(cancellationToken);
             if (response != null)
             {
                 return View(response);
@@ -32,6 +31,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 
             return View();
         }
+
         [Route("CreateSpecialOffer"), HttpGet]
         public IActionResult CreateSpecialOffer()
         {
@@ -41,22 +41,11 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v0 = "Special Offer Operations";
             return View();
         }
+
         [Route("CreateSpecialOffer"), HttpPost]
-        public async Task<IActionResult> CreateSpecialOffer(CreateSpecialOfferDTO createSpecialOfferDTO)
+        public async Task<IActionResult> CreateSpecialOffer(CreateSpecialOfferDTO createSpecialOfferDTO, CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.PostAsJsonAsync("https://localhost:7135/api/SpecialOffer", createSpecialOfferDTO);
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "SpecialOffer", new { Area = "Admin" });
-            }
-            return View();
-        }
-        [Route("DeleteSpecialOffer/{id}")]
-        public async Task<IActionResult> DeleteSpecialOffer(string id)
-        {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.DeleteAsync($"https://localhost:7135/api/SpecialOffer?id={id}");
+            var response = await _specialOfferService.CreateSpecialOfferAsync(createSpecialOfferDTO, cancellationToken);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "SpecialOffer", new { Area = "Admin" });
@@ -64,27 +53,37 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             return View();
         }
 
+        [Route("DeleteSpecialOffer/{id}")]
+        public async Task<IActionResult> DeleteSpecialOffer(string id, CancellationToken cancellationToken)
+        {
+            var response = await _specialOfferService.DeleteSpecialOfferAsync(id, cancellationToken);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "SpecialOffer", new { Area = "Admin" });
+            }
+            return RedirectToAction("Index", "SpecialOffer", new { Area = "Admin" });
+        }
+
         [Route("UpdateSpecialOffer/{id}"), HttpGet]
-        public async Task<IActionResult> UpdateSpecialOffer(string id)
+        public async Task<IActionResult> UpdateSpecialOffer(string id, CancellationToken cancellationToken)
         {
             ViewBag.v1 = "Home";
             ViewBag.v2 = "Categories";
             ViewBag.v3 = "Update Special Offer";
             ViewBag.v0 = "Special Offer Operations";
 
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetFromJsonAsync<UpdateSpecialOfferDTO>($"https://localhost:7135/api/SpecialOffer/{id}");
+            var response = await _specialOfferService.GetByIdSpecialOfferAsync(id, cancellationToken);
             if (response != null)
             {
                 return View(response);
             }
             return View();
         }
+
         [Route("UpdateSpecialOffer/{id}"), HttpPost]
-        public async Task<IActionResult> UpdateSpecialOffer(UpdateSpecialOfferDTO updateSpecialOfferDTO)
+        public async Task<IActionResult> UpdateSpecialOffer(UpdateSpecialOfferDTO updateSpecialOfferDTO, CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.PutAsJsonAsync("https://localhost:7135/api/SpecialOffer", updateSpecialOfferDTO);
+            var response = await _specialOfferService.UpdateSpecialOfferAsync(updateSpecialOfferDTO, cancellationToken);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "SpecialOffer", new { area = "Admin" });

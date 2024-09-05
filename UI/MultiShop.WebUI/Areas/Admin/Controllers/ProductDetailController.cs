@@ -1,35 +1,32 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.DTOLayer.DTOs.CatalogDTOs.ProductDetailDTOs;
+using MultiShop.WebUI.Services.CatalogServices.ProductDetailServices;
 
 namespace MultiShop.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    
     [Route("Admin/ProductDetail")]
     public class ProductDetailController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IProductDetailService _productDetailService;
 
-        public ProductDetailController(IHttpClientFactory httpClientFactory)
+        public ProductDetailController(IProductDetailService productDetailService)
         {
-            _httpClientFactory = httpClientFactory;
+            _productDetailService = productDetailService;
         }
 
         [Route("UpdateProductDetail/{id}"), HttpGet]
-        public async Task<IActionResult> UpdateProductDetail(string id)
+        public async Task<IActionResult> UpdateProductDetail(string id, CancellationToken cancellationToken)
         {
             ViewBag.v1 = "Home";
             ViewBag.v2 = "Categories";
             ViewBag.v3 = "Update Product Detail";
             ViewBag.v0 = "Product Detail Operations";
 
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7135/api/ProductDetail/GetProductDetailByProductId?id={id}");
-            if (responseMessage.IsSuccessStatusCode && responseMessage.Content.Headers.ContentLength > 0)
+            var responseGet = await _productDetailService.GetProductDetailByProductId(id, cancellationToken);
+            if (responseGet != null)
             {
-                var response = await responseMessage.Content.ReadFromJsonAsync<UpdateProductDetailDTO>();
-                return View(response);
+                return View(responseGet);
             }
             CreateProductDetailDTO createProductDetailDTO = new()
             {
@@ -37,15 +34,18 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
                 ProductDescription = "",
                 ProductInfo = ""
             };
-            var responsePost = await client.PostAsJsonAsync("https://localhost:7135/api/ProductDetail", createProductDetailDTO);
-            return View();
+            var responsePost = await _productDetailService.CreateProductDetailAsync(createProductDetailDTO, cancellationToken);
+            if (responsePost.IsSuccessStatusCode)
+            {
+                return View();
+            }
+            return RedirectToAction("ProductListWithCategory", "Product", new { area = "Admin" });
         }
 
         [Route("UpdateProductDetail/{id}"), HttpPost]
-        public async Task<IActionResult> UpdateProductDetail(UpdateProductDetailDTO updateProductDetailDTO)
+        public async Task<IActionResult> UpdateProductDetail(UpdateProductDetailDTO updateProductDetailDTO, CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.PutAsJsonAsync("https://localhost:7135/api/ProductDetail", updateProductDetailDTO);
+            var response = await _productDetailService.UpdateProductDetailAsync(updateProductDetailDTO, cancellationToken);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("ProductListWithCategory", "Product", new { area = "Admin" });

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.DTOLayer.DTOs.CatalogDTOs.AboutDTOs;
+using MultiShop.WebUI.Services.CatalogServices.AboutServices;
 
 namespace MultiShop.WebUI.Areas.Admin.Controllers
 {
@@ -7,23 +8,22 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
     [Route("Admin/About")]
     public class AboutController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IAboutService _aboutService;
 
-        public AboutController(IHttpClientFactory httpClientFactory)
+        public AboutController(IAboutService aboutService)
         {
-            _httpClientFactory = httpClientFactory;
+            _aboutService = aboutService;
         }
 
         [Route("Index")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
             ViewBag.v1 = "Home";
             ViewBag.v2 = "Categories";
             ViewBag.v3 = "About List";
             ViewBag.v0 = "About Operations";
 
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetFromJsonAsync<List<ResultAboutDTO>>("https://localhost:7135/api/About");
+            var response = await _aboutService.GetAllAboutsAsync(cancellationToken);
             if (response != null)
             {
                 return View(response);
@@ -43,10 +43,9 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         }
 
         [Route("CreateAbout"), HttpPost]
-        public async Task<IActionResult> CreateAbout(CreateAboutDTO createAboutDTO)
+        public async Task<IActionResult> CreateAbout(CreateAboutDTO createAboutDTO, CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.PostAsJsonAsync("https://localhost:7135/api/About", createAboutDTO);
+            var response = await _aboutService.CreateAboutAsync(createAboutDTO, cancellationToken);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "About", new { Area = "Admin" });
@@ -55,27 +54,25 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         }
 
         [Route("DeleteAbout/{id}")]
-        public async Task<IActionResult> DeleteAbout(string id)
+        public async Task<IActionResult> DeleteAbout(string id, CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.DeleteAsync($"https://localhost:7135/api/About?id={id}");
+            var response = await _aboutService.DeleteAboutAsync(id, cancellationToken);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "About", new { Area = "Admin" });
             }
-            return View();
+            return RedirectToAction("Index", "About", new { Area = "Admin" });
         }
 
         [Route("UpdateAbout/{id}"), HttpGet]
-        public async Task<IActionResult> UpdateAbout(string id)
+        public async Task<IActionResult> UpdateAbout(string id, CancellationToken cancellationToken)
         {
             ViewBag.v1 = "Home";
             ViewBag.v2 = "Categories";
             ViewBag.v3 = "Update About";
             ViewBag.v0 = "About Operations";
 
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetFromJsonAsync<UpdateAboutDTO>($"https://localhost:7135/api/About/{id}");
+            var response = await _aboutService.GetByIdAboutAsync(id, cancellationToken);
             if (response != null)
             {
                 return View(response);
@@ -84,10 +81,9 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         }
 
         [Route("UpdateAbout/{id}"), HttpPost]
-        public async Task<IActionResult> UpdateAbout(UpdateAboutDTO updateAboutDTO)
+        public async Task<IActionResult> UpdateAbout(UpdateAboutDTO updateAboutDTO, CancellationToken cancellationToken)
         {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.PutAsJsonAsync("https://localhost:7135/api/About", updateAboutDTO);
+            var response = await _aboutService.UpdateAboutAsync(updateAboutDTO, cancellationToken);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "About", new { area = "Admin" });
