@@ -1,4 +1,6 @@
 ﻿using MultiShop.DTOLayer.DTOs.CommentDTOs;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace MultiShop.WebUI.Services.CommentServices
 {
@@ -13,7 +15,11 @@ namespace MultiShop.WebUI.Services.CommentServices
 
         public async Task<HttpResponseMessage> CreateCommentAsync(CreateCommentDTO createCommentDTO, CancellationToken cancellationToken)
         {
-            var response = await _httpClient.PostAsJsonAsync("Comment", createCommentDTO, cancellationToken);
+            var jsonData = JsonConvert.SerializeObject(createCommentDTO);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync("Comment", stringContent, cancellationToken);
+            var msg = response.Content.ReadAsStringAsync();
+
             return response;
         }
 

@@ -69,7 +69,7 @@
             </div>
         }
 
-       @await Html.PartialAsync("~/Views/ProductList/AddComment.cshtml")
+        @await Html.PartialAsync("~/Views/ProductList/AddComment.cshtml", new { productId = ViewBag.ProductId })
 
     </div>
 </div>

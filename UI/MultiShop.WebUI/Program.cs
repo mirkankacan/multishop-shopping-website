@@ -118,6 +118,7 @@ builder.Services.AddHttpClient<ICommentService, CommentService>(opt =>
 {
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Comment.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
