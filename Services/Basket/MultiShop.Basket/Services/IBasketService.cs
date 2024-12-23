@@ -9,9 +9,5 @@ namespace MultiShop.Basket.Services
         Task SaveBasketAsync(BasketTotalDTO basketTotalDTO);
 
         Task DeleteBasketAsync(string userID);
-
-        Task AddBasketItem(BasketItemDTO basketItemDTO);
-
-        Task<bool> RemoveBasketItem(string productId);
     }
 }
