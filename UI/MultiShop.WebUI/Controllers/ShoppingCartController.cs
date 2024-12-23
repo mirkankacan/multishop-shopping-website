@@ -16,21 +16,23 @@ namespace MultiShop.WebUI.Controllers
             _basketService = basketService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var values = await _basketService.GetBasketTotalAsync();
-            return View(values);
+            ViewBag.Directory1 = "Home";
+            ViewBag.Directory2 = "My Basket";
+            return View();
         }
 
-        public async Task<IActionResult> AddBasketItem(string productId, CancellationToken cancellationToken)
+        public async Task<IActionResult> AddBasketItem(string id, CancellationToken cancellationToken)
         {
-            var values = await _productService.GetByIdProductAsync(productId, cancellationToken);
+            var values = await _productService.GetByIdProductAsync(id, cancellationToken);
             var items = new BasketItemDTO
             {
                 ProductID = values.ProductID,
                 ProductName = values.ProductName,
                 Price = values.ProductPrice,
-                Quantity = 1
+                Quantity = 1,
+                ProductImageUrl = values.ProductImageURL
             };
             await _basketService.AddBasketItemAsync(items);
             return RedirectToAction("Index");

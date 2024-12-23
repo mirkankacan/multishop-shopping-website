@@ -29,9 +29,9 @@ namespace MultiShop.WebUI.Services.BasketServices
             await SaveBasketAsync(values);
         }
 
-        public Task DeleteBasketAsync(string userID)
+        public async Task DeleteBasketAsync()
         {
-            throw new NotImplementedException();
+            await _httpClient.DeleteAsync($"basket");
         }
 
         public async Task<BasketTotalDTO> GetBasketTotalAsync()
