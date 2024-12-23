@@ -13,6 +13,11 @@ namespace MultiShop.Basket.Services
             _redisService = redisService;
         }
 
+        public Task AddBasketItem(BasketItemDTO basketItemDTO)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task DeleteBasketAsync(string userID)
         {
             await _redisService.GetDb().KeyDeleteAsync(userID);
@@ -24,9 +29,14 @@ namespace MultiShop.Basket.Services
             return JsonSerializer.Deserialize<BasketTotalDTO>(existBasket);
         }
 
+        public Task<bool> RemoveBasketItem(string productId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task SaveBasketAsync(BasketTotalDTO basketTotalDTO)
         {
-           await _redisService.GetDb().StringSetAsync(key:basketTotalDTO.UserID,value:JsonSerializer.Serialize(basketTotalDTO));
+            await _redisService.GetDb().StringSetAsync(key: basketTotalDTO.UserID, value: JsonSerializer.Serialize(basketTotalDTO));
         }
     }
 }
